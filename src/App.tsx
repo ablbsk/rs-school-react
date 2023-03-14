@@ -1,9 +1,10 @@
+import './index.scss';
 import React from 'react';
 
 function App() {
   return (
     <div>
-      <h1>Hello world</h1>
+      <h1 className="header">Hello world</h1>
     </div>
   );
 }
