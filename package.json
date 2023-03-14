@@ -4,8 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "start": "vite --open",
     "build": "tsc && vite build",
+    "lint": "eslint src",
     "preview": "vite preview"
   },
   "dependencies": {
