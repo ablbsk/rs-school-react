@@ -3,6 +3,7 @@ import React, { FunctionComponent } from 'react';
 import Header from '../header/header';
 import Grid from '../grid/grid';
 import Search from '../search/search';
+import Footer from '../footer/footer';
 
 const Home: FunctionComponent = () => {
   return (
@@ -13,6 +14,7 @@ const Home: FunctionComponent = () => {
         <Search />
       </div>
       <Grid />
+      <Footer />
     </>
   );
 };

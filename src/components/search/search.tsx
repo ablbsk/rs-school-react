@@ -4,7 +4,7 @@ import React, { FunctionComponent } from 'react';
 const Search: FunctionComponent = () => {
   return (
     <div className="search">
-      <input className="search__input" type="text" placeholder="What do you search?" />
+      <input className="search__input" type="text" placeholder="What do you want to find?" />
       <span className="search__icon search__icon--search" />
       <span className="search__icon search__icon--arrow" />
     </div>

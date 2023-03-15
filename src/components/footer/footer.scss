@@ -1,0 +1,30 @@
+@import '../../styles/constants';
+
+.footer {
+  background-color: $color-accent;
+  color: $color-font-light-regular;
+}
+
+.footer__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer__text {
+  margin: 10px 0;
+  font-size: map-get($font-size, s);
+  cursor: default;
+}
+
+.footer__developer {
+  padding-bottom: 3px;
+  display: inline-block;
+  color: $color-font-light-regular;
+  text-decoration: none;
+  transition: $transition;
+
+  &:hover {
+    color: $color-font-dark-regular;
+  }
+}
