@@ -1,0 +1,49 @@
+@import '../../styles/constants';
+@import '../../styles/mixins';
+
+.search {
+  width: 500px;
+  position: relative;
+}
+
+.search__input {
+  padding: 10px 40px;
+  width: 100%;
+  font-size: map-get($font-size, l);
+  font-weight: 500;
+  color: $color-font-dark-regular;
+  border: 2px solid $color-font-dark-regular;
+  border-radius: 6px;
+  box-sizing: border-box;
+  transition: $transition;
+  outline: none;
+
+  &:active,
+  &:focus,
+  &:hover {
+    border-color: $color-accent;
+  }
+}
+
+.search__icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  &:hover {
+    .search__input {
+      border-color: $color-accent;
+    }
+  }
+
+  &--search {
+    @include icon-background(24px, 24px, "../../assets/images/search.svg");
+    left: 10px;
+  }
+
+  &--arrow {
+    @include icon-background(24px, 24px, "../../assets/images/arrow.svg");
+    right: 10px;
+    cursor: pointer;
+  }
+}

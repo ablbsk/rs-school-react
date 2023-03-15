@@ -1,11 +1,8 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
+import Home from '../home/home';
 
-function App() {
-  return (
-    <div>
-      <h1 className="header">Hello world</h1>
-    </div>
-  );
-}
+const App: FunctionComponent = () => {
+  return <Home />;
+};
 
 export default App;

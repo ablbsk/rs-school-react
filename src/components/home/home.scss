@@ -1,0 +1,19 @@
+@import '../../styles/constants';
+@import '../../styles/mixins';
+
+.promo {
+  @include icon-background(400px, 100%, '../../assets/images/promo.svg');
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  color: $color-font-dark-regular;
+}
+
+.promo__header {
+  margin-top: 100px;
+  font-size: map-get($font-size, 4xl);
+  font-weight: 700;
+  cursor: default;
+}

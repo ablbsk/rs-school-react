@@ -1,0 +1,34 @@
+@import '../../styles/constants';
+
+.header {
+  background-color: $color-accent;
+  color: $color-font-light-regular;
+  box-shadow: 0 4px 16px 0 rgba(34, 60, 80, 0.2);
+}
+
+.header__wrapper {
+  padding: 10px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navigation__list {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+.navigation__item {
+  font-size: map-get($font-size, m);
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: $transition;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-additional;
+  }
+}

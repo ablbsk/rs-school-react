@@ -1,7 +1,22 @@
-@import './normalize';
-@import './mixins';
-@import './constants';
+@import "./normalize";
+@import "./mixins";
+@import "./constants";
+@import "./typography";
 
-.header {
-  color: mediumaquamarine;
+html {
+  font-size: 10px;
+  font-family: Futura, sans-serif;
+}
+
+body {
+  min-width: 360px;
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.logo {
+  @include icon-background(40px, 40px, "../assets/images/logo.svg");
 }
