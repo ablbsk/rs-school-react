@@ -21,12 +21,14 @@
   list-style: none;
 }
 
-.navigation__item {
+.navigation__link {
   font-size: map-get($font-size, m);
   font-weight: 500;
   text-transform: uppercase;
+  text-decoration: none;
   transition: $transition;
   cursor: pointer;
+  color: $color-font-light-regular;
 
   &:hover {
     color: $color-additional;

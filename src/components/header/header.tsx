@@ -1,5 +1,6 @@
 import './header.scss';
 import React, { FunctionComponent } from 'react';
+import { Link } from 'react-router-dom';
 
 const Header: FunctionComponent = () => {
   return (
@@ -8,8 +9,16 @@ const Header: FunctionComponent = () => {
         <span className="logo" />
         <nav className="navigation">
           <ul className="navigation__list">
-            <li className="navigation__item">Home</li>
-            <li className="navigation__item">About us</li>
+            <li className="navigation__item">
+              <Link className="navigation__link" to="/">
+                Home
+              </Link>
+            </li>
+            <li className="navigation__item">
+              <Link className="navigation__link" to="/about-us">
+                About Us
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>
