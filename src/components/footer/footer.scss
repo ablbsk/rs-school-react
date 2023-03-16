@@ -1,7 +1,11 @@
 @import '../../styles/constants';
 
 .footer {
-  background-color: $color-accent;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-image: $background-image-accent;
   color: $color-font-light-regular;
 }
 

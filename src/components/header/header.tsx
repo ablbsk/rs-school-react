@@ -6,7 +6,9 @@ const Header: FunctionComponent = () => {
   return (
     <header className="header">
       <div className="wrapper header__wrapper">
-        <span className="logo" />
+        <Link className="header__link" to="/">
+          <span className="logo" />
+        </Link>
         <nav className="navigation">
           <ul className="navigation__list">
             <li className="navigation__item">

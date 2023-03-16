@@ -1,5 +1,6 @@
 import './footer.scss';
 import React, { FunctionComponent } from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer: FunctionComponent = () => {
   return (
@@ -7,7 +8,9 @@ const Footer: FunctionComponent = () => {
       <div className="wrapper footer__wrapper">
         <p className="footer__text">
           <span>Code by </span>
-          <a href="https://github.com/ablbsk/rs-school-react" className="footer__developer" target="_blank">Aliaskei Balabushka</a>
+          <Link to="https://github.com/ablbsk/" className="footer__developer" target="_blank">
+            <span>Aliaskei Balabushka</span>
+          </Link>
           <span> 2023</span>
         </p>
       </div>

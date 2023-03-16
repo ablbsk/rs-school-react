@@ -1,7 +1,8 @@
 @import '../../styles/constants';
+@import '../../styles/mixins';
 
 .header {
-  background-color: $color-accent;
+  background-image: $background-image-accent;
   color: $color-font-light-regular;
   box-shadow: 0 4px 16px 0 rgba(34, 60, 80, 0.2);
 }
@@ -11,6 +12,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.header__link {
+  &:hover {
+    .logo {
+      filter: brightness(0) saturate(100%) invert(7%) sepia(4%) saturate(2789%) hue-rotate(163deg) brightness(93%) contrast(86%);
+    }
+  }
+}
+
+.logo {
+  @include icon-background(40px, 40px, "../../assets/images/logo.svg");
+  transition: $transition;
 }
 
 .navigation__list {
@@ -24,13 +38,17 @@
 .navigation__link {
   font-size: map-get($font-size, m);
   font-weight: 500;
+  color: $color-font-light-regular;
   text-transform: uppercase;
   text-decoration: none;
   transition: $transition;
   cursor: pointer;
-  color: $color-font-light-regular;
 
   &:hover {
-    color: $color-additional;
+    color: $color-font-dark-regular;
+  }
+
+  @include media-sm {
+    font-size: map-get($font-size, s);
   }
 }

@@ -10,11 +10,13 @@ const App: FunctionComponent = () => {
   return (
     <>
       <Header />
-      <Routes>
-        <Route path="*" element={<NotFound />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/about-us" element={<AboutUs />} />
-      </Routes>
+      <main className="main">
+        <Routes>
+          <Route path="*" element={<NotFound />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/about-us" element={<AboutUs />} />
+        </Routes>
+      </main>
       <Footer />
     </>
   );

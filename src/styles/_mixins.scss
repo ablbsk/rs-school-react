@@ -1,3 +1,5 @@
+@import "./constants";
+
 @mixin font($family, $size, $line-height, $style: normal, $weight: 400) {
   font-family: $family;
   font-size: $size;
@@ -23,8 +25,20 @@
 
 // ========================= MEDIA ========================
 
-//@mixin media-desktop-max {
-//  @media (max-width: $breakpoint-desktop-max) {
-//    @content;
-//  }
-//}
+@mixin media-xl {
+  @media (max-width: map-get($media-breakpoints, xl)) {
+    @content;
+  }
+}
+
+@mixin media-md {
+  @media (max-width: map-get($media-breakpoints, md)) {
+    @content;
+  }
+}
+
+@mixin media-sm {
+  @media (max-width: map-get($media-breakpoints, sm)) {
+    @content;
+  }
+}

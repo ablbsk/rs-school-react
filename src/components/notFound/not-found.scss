@@ -1,0 +1,31 @@
+@import '../../styles/constants';
+@import '../../styles/mixins';
+
+.not-found {
+  width: 100%;
+  height: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $color-font-dark-regular;
+}
+
+.not-found__img {
+  @include icon-background(100%, 60%, '../../assets/images/not-found.png');
+  background-size: cover;
+  transition: $transition;
+
+  @include media-xl {
+    width: 80%;
+  }
+
+  @include media-md {
+    width: 100%;
+    height: 70%;
+  }
+
+  @include media-sm {
+    width: 100%;
+    height: 55%;
+  }
+}
