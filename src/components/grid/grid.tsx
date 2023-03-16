@@ -1,13 +1,15 @@
 import './grid.scss';
 import React, { FunctionComponent } from 'react';
+import { GridType } from '../../types';
+import Card from '../card';
 
-const Grid: FunctionComponent = () => {
+const Grid: FunctionComponent<GridType> = ({ characters }) => {
+  const cards = characters.map((item) => <Card character={item} key={`${item.name}-${item.id}`} />);
+
   return (
-    <div className="grid">
-      <div className="wrapper grid__wrapper">
-        <h2>grid</h2>
-      </div>
-    </div>
+    <section className="grid">
+      <div className="wrapper grid__wrapper">{cards}</div>
+    </section>
   );
 };
 

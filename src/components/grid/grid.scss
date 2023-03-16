@@ -1,10 +1,21 @@
 @import '../../styles/constants';
+@import '../../styles/mixins';
 
 .grid {
-  height: 300px;
   background-color: $color-font-dark-regular;
+  color: $color-font-light-regular;
 }
 
 .grid__wrapper {
-  padding: 0 30px;
+  padding: 60px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+
+  @include media-md {
+    flex-direction: column;
+    align-items: center;
+  }
 }

@@ -2,6 +2,7 @@ import './home.scss';
 import React, { FunctionComponent } from 'react';
 import Grid from '../grid/grid';
 import Search from '../search/search';
+import data from '../../data/data.json';
 
 const Home: FunctionComponent = () => {
   return (
@@ -10,7 +11,7 @@ const Home: FunctionComponent = () => {
         <h1 className="promo__header">The Rick and Morty</h1>
         <Search />
       </div>
-      <Grid />
+      <Grid characters={data.results} />
     </>
   );
 };

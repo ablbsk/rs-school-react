@@ -16,5 +16,19 @@
   margin-top: 100px;
   font-size: map-get($font-size, 4xl);
   font-weight: 700;
+  transition: $transition;
+  text-align: center;
   cursor: default;
+
+  @include media-md {
+    margin-top: 75px;
+    font-size: map-get($font-size, 3xl);
+    line-height: 55px;
+  }
+
+  @include media-sm {
+    margin-top: 50px;
+    font-size: map-get($font-size, 2xl);
+    line-height: 55px;
+  }
 }

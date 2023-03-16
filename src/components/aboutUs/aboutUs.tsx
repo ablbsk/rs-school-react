@@ -12,14 +12,14 @@ const AboutUs: FunctionComponent = () => {
     { name: 'SSR/SSG', isComplete: false },
   ];
 
-  const items = [1, 2, 3, 4, 5, 6].map((item, i) => (
+  const items = modules.map((item, i) => (
     <li key={modules[i].name} className="about-us__item">
       {modules[i].isComplete ? (
         <span className="about-us__status about-us__status--complete">complete</span>
       ) : (
         <span className="about-us__status about-us__status--in-progress">in progress</span>
       )}
-      <span className="about-us__separate">Week {item} — </span>
+      <span className="about-us__separate">Week {i + 1} — </span>
       <Link
         className="about-us__link"
         to={`https://github.com/rolling-scopes-school/tasks/tree/master/react/modules/module0${item}`}
