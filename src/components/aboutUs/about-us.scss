@@ -59,7 +59,7 @@
   border: 1px solid black;
   border-radius: $border-radius-md;
   color: #ffffff;
-  cursor: pointer;
+  cursor: default;
 
   &--complete {
     background-color: $color-accent-2;

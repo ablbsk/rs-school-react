@@ -48,6 +48,10 @@
     color: $color-font-dark-regular;
   }
 
+  &--active {
+    color: #f4ff00;
+  }
+
   @include media-sm {
     font-size: map-get($font-size, s);
   }
