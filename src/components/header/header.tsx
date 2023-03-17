@@ -5,14 +5,6 @@ import { Link, useLocation } from 'react-router-dom';
 
 const Header: FunctionComponent = () => {
   const location = useLocation();
-  console.log(location.pathname);
-
-//   className={classNames(
-//     'card__tag',
-//   { 'card__tag--female': character.gender === 'Female' },
-//   { 'card__tag--male': character.gender === 'Male' },
-//   { 'card__tag--genderless': character.gender === 'Genderless' }
-// )}
 
   return (
     <header className="header">

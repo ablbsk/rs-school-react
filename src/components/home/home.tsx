@@ -9,9 +9,20 @@ class Home extends Component<{}, { search: string; characters: ICharacter[] }> {
   constructor() {
     super({});
     this.state = {
-      search: '',
+      search: localStorage.getItem('searchHistory') || '',
       characters: data.results,
     };
+  }
+
+  componentWillUnmount() {
+    this.setState((state) => {
+      return { ...state, search: localStorage.getItem('searchHistory') || '' };
+    });
+  }
+
+  componentDidUpdate() {
+    const { search } = this.state;
+    localStorage.setItem('searchHistory', search);
   }
 
   updateSearchValue = (value: string, type: Event): void => {
@@ -45,7 +56,7 @@ class Home extends Component<{}, { search: string; characters: ICharacter[] }> {
   };
 
   render() {
-    const { characters } = this.state;
+    const { characters, search } = this.state;
 
     return (
       <>
@@ -57,7 +68,9 @@ class Home extends Component<{}, { search: string; characters: ICharacter[] }> {
               className="search__input"
               type="search"
               placeholder="What do you want to find?"
+              value={search}
               onChange={(e) => this.updateSearchValue(e.target.value, e.nativeEvent.inputType)}
+              // onBlur={(e) => localStorage.setItem('searchHistory', e.target.value)}
             />
             <button className="search__button" type="button" onClick={this.filterCards}>
               <span className="search__icon search__icon--arrow" />
