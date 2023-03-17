@@ -1,10 +1,10 @@
 import './home.scss';
 import React, { Component } from 'react';
-import Grid from '../grid/grid';
+import Grid from '../grid';
 import data from '../../data/data.json';
 import { ICharacter } from '../../interfaces';
 
-// eslint-disable-next-line react/prefer-stateless-function,@typescript-eslint/ban-types
+// eslint-disable-next-line
 class Home extends Component<{}, { search: string; characters: ICharacter[] }> {
   constructor() {
     super({});

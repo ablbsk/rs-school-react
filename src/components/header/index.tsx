@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
 const Header: FunctionComponent = () => {
-  console.log(window.location.pathname);
   return (
     <header className="header">
       <div className="wrapper header__wrapper">
