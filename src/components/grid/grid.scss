@@ -19,3 +19,8 @@
     align-items: center;
   }
 }
+
+.grid__header {
+  margin: 30px auto;
+  font-size: map-get($font-size, xl);
+}

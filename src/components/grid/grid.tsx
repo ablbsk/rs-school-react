@@ -8,7 +8,9 @@ const Grid: FunctionComponent<GridType> = ({ characters }) => {
 
   return (
     <section className="grid">
-      <div className="wrapper grid__wrapper">{cards}</div>
+      <div className="wrapper grid__wrapper">
+        {cards.length ? cards : <h2 className="grid__header">No results</h2>}
+      </div>
     </section>
   );
 };
