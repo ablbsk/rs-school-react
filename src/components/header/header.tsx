@@ -1,11 +1,10 @@
 import './header.scss';
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Header: FunctionComponent = () => {
-  const location = useLocation();
-
+  console.log(window.location.pathname);
   return (
     <header className="header">
       <div className="wrapper header__wrapper">
@@ -17,7 +16,7 @@ const Header: FunctionComponent = () => {
             <li className="navigation__item">
               <Link
                 className={classNames('navigation__link', {
-                  'navigation__link--active': location.pathname === '/',
+                  'navigation__link--active': window.location.pathname === '/',
                 })}
                 to="/"
               >
@@ -27,7 +26,7 @@ const Header: FunctionComponent = () => {
             <li className="navigation__item">
               <Link
                 className={classNames('navigation__link', {
-                  'navigation__link--active': location.pathname === '/about-us',
+                  'navigation__link--active': window.location.pathname === '/about-us',
                 })}
                 to="/about-us"
               >

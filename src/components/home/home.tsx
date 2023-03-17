@@ -14,6 +14,7 @@ class Home extends Component<{}, { search: string; characters: ICharacter[] }> {
     };
   }
 
+  // eslint-disable-next-line react/sort-comp
   componentWillUnmount() {
     this.setState((state) => {
       return { ...state, search: localStorage.getItem('searchHistory') || '' };
@@ -70,7 +71,6 @@ class Home extends Component<{}, { search: string; characters: ICharacter[] }> {
               placeholder="What do you want to find?"
               value={search}
               onChange={(e) => this.updateSearchValue(e.target.value, e.nativeEvent.inputType)}
-              // onBlur={(e) => localStorage.setItem('searchHistory', e.target.value)}
             />
             <button className="search__button" type="button" onClick={this.filterCards}>
               <span className="search__icon search__icon--arrow" />
