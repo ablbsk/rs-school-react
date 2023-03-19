@@ -4,14 +4,18 @@ import Grid from '../grid';
 import data from '../../data/data.json';
 import { ICharacter } from '../../interfaces';
 
-// eslint-disable-next-line
-class Home extends Component<{}, { search: string; characters: ICharacter[] }> {
-  constructor() {
-    super({});
+class Home extends Component<object, { search: string; characters: ICharacter[] }> {
+  constructor(props: object) {
+    super(props);
     this.state = {
       search: localStorage.getItem('searchHistory') || '',
       characters: data.results,
     };
+  }
+
+  componentDidMount() {
+    const { search } = this.state;
+    if (search.length) this.filterCards();
   }
 
   // eslint-disable-next-line react/sort-comp
@@ -26,7 +30,7 @@ class Home extends Component<{}, { search: string; characters: ICharacter[] }> {
     localStorage.setItem('searchHistory', search);
   }
 
-  updateSearchValue = (value: string, type: Event): void => {
+  updateSearchValue = (value: string, type: string): void => {
     if (type === undefined) {
       this.setState((state) => {
         return { ...state, search: '' };
