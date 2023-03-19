@@ -74,7 +74,11 @@ class Home extends Component<object, { search: string; characters: ICharacter[] 
               type="search"
               placeholder="What do you want to find?"
               value={search}
-              onChange={(e) => this.updateSearchValue(e.target.value, e.nativeEvent.inputType)}
+              onChange={(e) => {
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                this.updateSearchValue(e.target.value, e.nativeEvent.inputType);
+              }}
             />
             <button className="search__button" type="button" onClick={this.filterCards}>
               <span className="search__icon search__icon--arrow" />
