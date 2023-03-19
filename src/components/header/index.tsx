@@ -1,7 +1,7 @@
 import './header.scss';
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Header: FunctionComponent = () => {
   return (
@@ -13,24 +13,28 @@ const Header: FunctionComponent = () => {
         <nav className="navigation">
           <ul className="navigation__list">
             <li className="navigation__item">
-              <Link
-                className={classNames('navigation__link', {
-                  'navigation__link--active': window.location.pathname === '/',
-                })}
+              <NavLink
+                className={({ isActive }) =>
+                  classNames('navigation__link', {
+                    'navigation__link--active': isActive,
+                  })
+                }
                 to="/"
               >
                 Home
-              </Link>
+              </NavLink>
             </li>
             <li className="navigation__item">
-              <Link
-                className={classNames('navigation__link', {
-                  'navigation__link--active': window.location.pathname === '/about-us',
-                })}
+              <NavLink
+                className={({ isActive }) =>
+                  classNames('navigation__link', {
+                    'navigation__link--active': isActive,
+                  })
+                }
                 to="/about-us"
               >
                 About Us
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </nav>
