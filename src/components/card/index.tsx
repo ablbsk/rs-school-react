@@ -1,7 +1,7 @@
-import './card.scss';
-import React, { FunctionComponent } from 'react';
-import classNames from 'classnames';
-import { CardType } from '../../types';
+import "./card.scss";
+import React, { FunctionComponent } from "react";
+import classNames from "classnames";
+import { CardType } from "../../types";
 
 const Card: FunctionComponent<CardType> = ({ character }) => {
   return (
@@ -15,19 +15,19 @@ const Card: FunctionComponent<CardType> = ({ character }) => {
           <div className="card__tags">
             <span
               className={classNames(
-                'card__tag',
-                { 'card__tag--female': character.gender === 'Female' },
-                { 'card__tag--male': character.gender === 'Male' },
-                { 'card__tag--genderless': character.gender === 'Genderless' }
+                "card__tag",
+                { "card__tag--female": character.gender === "Female" },
+                { "card__tag--male": character.gender === "Male" },
+                { "card__tag--genderless": character.gender === "Genderless" }
               )}
             >
               {character.gender}
             </span>
             <span
               className={classNames(
-                'card__tag',
-                { 'card__tag--alive': character.status === 'Alive' },
-                { 'card__tag--dead': character.status === 'Dead' }
+                "card__tag",
+                { "card__tag--alive": character.status === "Alive" },
+                { "card__tag--dead": character.status === "Dead" }
               )}
             >
               {character.status}
@@ -40,7 +40,7 @@ const Card: FunctionComponent<CardType> = ({ character }) => {
             </p>
             <p className="card__text">
               <span className="card__title">Type:</span>
-              {character.type.length ? character.type : '-'}
+              {character.type.length ? character.type : "-"}
             </p>
             <p className="card__text">
               <span className="card__title">Location:</span>

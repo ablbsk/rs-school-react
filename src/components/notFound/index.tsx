@@ -1,5 +1,5 @@
-import './not-found.scss';
-import React, { FunctionComponent } from 'react';
+import "./not-found.scss";
+import React, { FunctionComponent } from "react";
 
 const NotFound: FunctionComponent = () => {
   return (

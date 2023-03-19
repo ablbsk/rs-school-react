@@ -1,5 +1,5 @@
-@import '../../styles/constants';
-@import '../../styles/mixins';
+@import "../../styles/constants";
+@import "../../styles/mixins";
 
 .not-found {
   width: 100%;
@@ -11,7 +11,7 @@
 }
 
 .not-found__img {
-  @include icon-background(100%, 60%, '../../assets/images/not-found.png');
+  @include icon-background(100%, 60%, "../../assets/images/not-found.png");
   background-size: cover;
   transition: $transition;
 

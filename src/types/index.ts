@@ -1,4 +1,4 @@
-import { ICharacter } from '../interfaces';
+import { ICharacter } from "../interfaces";
 
 export type GridType = {
   characters: ICharacter[];

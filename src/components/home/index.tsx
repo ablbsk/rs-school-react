@@ -1,14 +1,14 @@
-import './home.scss';
-import React, { Component } from 'react';
-import Grid from '../grid';
-import data from '../../data/data.json';
-import { ICharacter } from '../../interfaces';
+import "./home.scss";
+import React, { Component } from "react";
+import Grid from "../grid";
+import data from "../../data/data.json";
+import { ICharacter } from "../../interfaces";
 
 class Home extends Component<object, { search: string; characters: ICharacter[] }> {
   constructor(props: object) {
     super(props);
     this.state = {
-      search: localStorage.getItem('searchHistory') || '',
+      search: localStorage.getItem("searchHistory") || "",
       characters: data.results,
     };
   }
@@ -21,19 +21,19 @@ class Home extends Component<object, { search: string; characters: ICharacter[] 
   // eslint-disable-next-line react/sort-comp
   componentWillUnmount() {
     this.setState((state) => {
-      return { ...state, search: localStorage.getItem('searchHistory') || '' };
+      return { ...state, search: localStorage.getItem("searchHistory") || "" };
     });
   }
 
   componentDidUpdate() {
     const { search } = this.state;
-    localStorage.setItem('searchHistory', search);
+    localStorage.setItem("searchHistory", search);
   }
 
   updateSearchValue = (value: string, type: string): void => {
     if (type === undefined) {
       this.setState((state) => {
-        return { ...state, search: '' };
+        return { ...state, search: "" };
       }, this.filterCards);
     } else {
       this.setState((state) => {

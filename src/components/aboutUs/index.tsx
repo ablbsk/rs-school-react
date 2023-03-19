@@ -1,15 +1,15 @@
-import './about-us.scss';
-import React, { FunctionComponent } from 'react';
-import { Link } from 'react-router-dom';
+import "./about-us.scss";
+import React, { FunctionComponent } from "react";
+import { Link } from "react-router-dom";
 
 const AboutUs: FunctionComponent = () => {
   const modules = [
-    { name: 'Components', isComplete: true },
-    { name: 'Forms', isComplete: false },
-    { name: 'Hooks', isComplete: false },
-    { name: 'API', isComplete: false },
-    { name: 'Redux', isComplete: false },
-    { name: 'SSR/SSG', isComplete: false },
+    { name: "Components", isComplete: true },
+    { name: "Forms", isComplete: false },
+    { name: "Hooks", isComplete: false },
+    { name: "API", isComplete: false },
+    { name: "Redux", isComplete: false },
+    { name: "SSR/SSG", isComplete: false },
   ];
 
   const items = modules.map((item, i) => (
@@ -34,7 +34,7 @@ const AboutUs: FunctionComponent = () => {
       <div className="wrapper about-us__wrapper">
         <h2 className="about-us__header">About Us</h2>
         <h3 className="about-us__subheader">
-          This is the project of the Rolling Scope School course —{' '}
+          This is the project of the Rolling Scope School course —{" "}
           <Link
             className="about-us__link"
             to="https://github.com/rolling-scopes-school/tasks/tree/master/react"

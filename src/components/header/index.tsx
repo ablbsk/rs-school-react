@@ -1,7 +1,7 @@
-import './header.scss';
-import React, { FunctionComponent } from 'react';
-import classNames from 'classnames';
-import { Link, NavLink } from 'react-router-dom';
+import "./header.scss";
+import React, { FunctionComponent } from "react";
+import classNames from "classnames";
+import { Link, NavLink } from "react-router-dom";
 
 const Header: FunctionComponent = () => {
   return (
@@ -15,8 +15,8 @@ const Header: FunctionComponent = () => {
             <li className="navigation__item">
               <NavLink
                 className={({ isActive }) =>
-                  classNames('navigation__link', {
-                    'navigation__link--active': isActive,
+                  classNames("navigation__link", {
+                    "navigation__link--active": isActive,
                   })
                 }
                 to="/"
@@ -27,8 +27,8 @@ const Header: FunctionComponent = () => {
             <li className="navigation__item">
               <NavLink
                 className={({ isActive }) =>
-                  classNames('navigation__link', {
-                    'navigation__link--active': isActive,
+                  classNames("navigation__link", {
+                    "navigation__link--active": isActive,
                   })
                 }
                 to="/about-us"
