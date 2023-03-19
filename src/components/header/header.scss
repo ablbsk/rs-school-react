@@ -1,0 +1,58 @@
+@import "../../styles/constants";
+@import "../../styles/mixins";
+
+.header {
+  background-image: $background-image-accent;
+  color: $color-font-light-regular;
+  box-shadow: 0 4px 16px 0 rgba(34, 60, 80, 0.2);
+}
+
+.header__wrapper {
+  padding: 10px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__link {
+  &:hover {
+    .logo {
+      filter: brightness(0) saturate(100%) invert(7%) sepia(4%) saturate(2789%) hue-rotate(163deg) brightness(93%) contrast(86%);
+    }
+  }
+}
+
+.logo {
+  @include icon-background(40px, 40px, "../../assets/images/logo.svg");
+  transition: $transition;
+}
+
+.navigation__list {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+.navigation__link {
+  font-size: map-get($font-size, m);
+  font-weight: 500;
+  color: $color-font-light-regular;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: $transition;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-font-dark-regular;
+  }
+
+  &--active {
+    color: #f4ff00;
+  }
+
+  @include media-sm {
+    font-size: map-get($font-size, s);
+  }
+}
