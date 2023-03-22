@@ -28,6 +28,11 @@
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 30px;
+  transition: $transition;
+
+  @include media-md {
+    flex-direction: column;
+  }
 }
 
 .form__section {
@@ -37,12 +42,17 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 30px;
+  transition: $transition;
 
   &--wide {
-    margin-top: 60px;
+    margin-top: 30px;
     width: 100%;
     flex-direction: column;
     gap: 15px;
+  }
+
+  @include media-md {
+    width: 100%;
   }
 }
 
@@ -55,6 +65,12 @@
     width: auto;
     flex-direction: column;
     gap: 10px;
+  }
+
+  &--center {
+    @include media-md {
+      justify-content: center;
+    }
   }
 }
 
@@ -72,7 +88,7 @@
   gap: 10px;
 
   &--short {
-    min-width: 150px;
+    min-width: 125px;
     max-width: 175px;
   }
 

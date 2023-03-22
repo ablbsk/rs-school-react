@@ -66,7 +66,7 @@ class Form extends Component<object, object> {
               </div>
             </div>
             <div className="form__section">
-              <div className="form__line form__line--radio">
+              <div className="form__line form__line--center form__line--radio">
                 <span className="form__label">Evaluate the project</span>
                 <div className="form__radio-container">
                   <label htmlFor="ratingGood">

@@ -7,6 +7,10 @@
   font-size: map-get($font-size, l);
 }
 
+.feedback__wrapper {
+  padding: 0 30px;
+}
+
 .feedback__img {
   @include icon-background(375px, 100%, "../../assets/images/feedback.jpg");
   background-size: cover;
