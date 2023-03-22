@@ -36,6 +36,18 @@ const Header: FunctionComponent = () => {
                 About Us
               </NavLink>
             </li>
+            <li className="navigation__item">
+              <NavLink
+                className={({ isActive }) =>
+                  classNames("navigation__link", {
+                    "navigation__link--active": isActive,
+                  })
+                }
+                to="/feedback"
+              >
+                Feedback
+              </NavLink>
+            </li>
           </ul>
         </nav>
       </div>

@@ -49,7 +49,7 @@
   }
 
   &--active {
-    color: #f4ff00;
+    color: $color-accent-text;
   }
 
   @include media-sm {

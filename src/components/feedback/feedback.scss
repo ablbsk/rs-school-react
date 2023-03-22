@@ -1,0 +1,22 @@
+@import "../../styles/constants";
+@import "../../styles/mixins";
+
+.feedback {
+  padding-bottom: 100px;
+  color: $color-font-light-regular;
+  font-size: map-get($font-size, l);
+}
+
+.feedback__img {
+  @include icon-background(375px, 100%, "../../assets/images/feedback.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.feedback__header {
+  margin: 60px 0 40px 0;
+  font-size: map-get($font-size, xl);
+  font-weight: 900;
+  text-transform: uppercase;
+}

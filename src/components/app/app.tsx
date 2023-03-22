@@ -5,6 +5,7 @@ import Header from "../header";
 import Footer from "../footer";
 import AboutUs from "../aboutUs";
 import NotFound from "../notFound";
+import Feedback from "../feedback";
 
 const App: FunctionComponent = () => {
   return (
@@ -15,6 +16,7 @@ const App: FunctionComponent = () => {
           <Route path="*" element={<NotFound />} />
           <Route path="/" element={<Home />} />
           <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/feedback" element={<Feedback />} />
         </Routes>
       </main>
       <Footer />
