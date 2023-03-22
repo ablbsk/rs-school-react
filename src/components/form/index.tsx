@@ -3,34 +3,27 @@ import React, { Component } from "react";
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Form extends Component<object, object> {
-  // rating (checkbox)
-  // switcher (show full name option)
-  // dropdown (country)
-
   render() {
     return (
       <div className="form">
         <h3 className="form__header">Send us your feedback!</h3>
         <div className="form__container">
           <form className="form__form">
-            <div className="form__user">
+            <div className="form__section">
               <div className="form__line">
                 <label className="form__label" htmlFor="username">
                   Username
                   <input
-                    className="form__input form__item"
                     id="username"
+                    className="form__input form__item"
                     type="text"
                     placeholder="Morty"
                   />
+                  <span className="form__error">* Wrong value</span>
                 </label>
-                <label htmlFor="continents">
+                <label className="form__label form__label--short" htmlFor="continents">
                   Continents
-                  <select
-                    className="form__dropdown form__item form__item--short"
-                    id="continents"
-                    name="continents"
-                  >
+                  <select id="continents" className="form__dropdown form__item form__item--short">
                     <option value="africa">Africa</option>
                     <option value="asia">Asia</option>
                     <option value="europe">Europe</option>
@@ -39,6 +32,7 @@ class Form extends Component<object, object> {
                     <option value="antarctica">Antarctica</option>
                     <option value="australia">Australia</option>
                   </select>
+                  <span className="form__error">* Wrong value</span>
                 </label>
               </div>
               <div className="form__line">
@@ -50,10 +44,12 @@ class Form extends Component<object, object> {
                     type="email"
                     placeholder="morty.smith@gmail.com"
                   />
+                  <span className="form__error">* Wrong value</span>
                 </label>
-                <label className="form__label form__item--short" htmlFor="birth">
+                <label className="form__label form__label--short" htmlFor="birth">
                   Date of birth
-                  <input className="form__date form__item" type="date" id="birth" />
+                  <input id="birth" className="form__item" type="date" />
+                  <span className="form__error">* Wrong value</span>
                 </label>
               </div>
               <div className="form__line">
@@ -63,13 +59,31 @@ class Form extends Component<object, object> {
                     className="form__file form__item"
                     type="file"
                     id="avatar"
-                    name="avatar"
                     accept="image/png, image/jpeg, image/jpg"
                   />
+                  <span className="form__error">* Wrong value</span>
                 </label>
               </div>
             </div>
-            <div className="form__rating">
+            <div className="form__section">
+              <div className="form__line form__line--radio">
+                <span className="form__label">Evaluate the project</span>
+                <div className="form__radio-container">
+                  <label htmlFor="ratingGood">
+                    <input id="ratingGood" type="radio" name="rating" value="good" />
+                    <span className="form__radio-icon icon--smile-good" />
+                  </label>
+                  <label htmlFor="ratingMaybe">
+                    <input id="ratingMaybe" type="radio" name="rating" value="maybe" />
+                    <span className="form__radio-icon icon--smile-maybe" />
+                  </label>
+                  <label htmlFor="ratingBad">
+                    <input id="ratingBad" type="radio" name="rating" value="bad" />
+                    <span className="form__radio-icon icon--smile-bad" />
+                  </label>
+                </div>
+                <span className="form__error">* Wrong value</span>
+              </div>
               <div className="form__line">
                 <label className="form__label" htmlFor="description">
                   Describe your opinion
@@ -78,8 +92,19 @@ class Form extends Component<object, object> {
                     className="form__textarea form__item"
                     placeholder="What do you think about this animated series?"
                   />
+                  <span className="form__error">* Wrong value</span>
                 </label>
               </div>
+            </div>
+            <div className="form__section form__section--wide">
+              <label className="form__check" htmlFor="checkbox">
+                <input className="form__checkbox" type="checkbox" id="checkbox" name="checkbox" />I
+                agree to send my data
+              </label>
+              <span className="form__error">* Wrong value</span>
+              <button className="button form__button" type="submit">
+                Create feedback
+              </button>
             </div>
           </form>
         </div>

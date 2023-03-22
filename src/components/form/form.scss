@@ -26,17 +26,64 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  flex-wrap: wrap;
   gap: 30px;
 }
 
-.form__input {
-  padding: 10px;
-  width: 100%;
+.form__section {
+  width: calc(50% - 15px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+
+  &--wide {
+    margin-top: 60px;
+    width: 100%;
+    flex-direction: column;
+    gap: 15px;
+  }
 }
 
-.form__input,
-.form__textarea,
-.form__dropdown {
+.form__line {
+  width: 100%;
+  display: flex;
+  gap: 30px;
+
+  &--radio {
+    width: auto;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.form__radio-container {
+  display: flex;
+  gap: 30px;
+}
+
+// ===================== FORM ITEM ========================
+
+.form__label {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &--short {
+    min-width: 150px;
+    max-width: 175px;
+  }
+
+  &--file {
+    max-width: 300px;
+  }
+}
+
+.form__item {
+  padding: 10px;
+  width: 100%;
   color: $color-font-light-regular;
   background-color: $color-font-dark-regular;
   border: 2px solid $color-font-dark-regular;
@@ -46,9 +93,13 @@
   outline: none;
 
   &:active,
-  &:focus,
+  &:focus {
+    border-color: $color-accent-2;
+  }
+
   &:hover {
-    border-color: $color-accent;
+    border-color: $color-accent-2;
+    cursor: pointer;
   }
 
   @include media-sm {
@@ -56,42 +107,81 @@
   }
 }
 
-
-// ===================== USER DATA ========================
-
-.form__user {
-  width: calc(50% - 15px);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 30px;
-}
-
-.form__line {
-  width: 100%;
-  display: flex;
-  gap: 30px;
-}
-
-input[type="date"] {
-  padding: 10px 20px;
-  display: block;
-  background-color: $color-accent;
-  color: $color-font-light-regular;
-  border: 1px solid transparent;
-  border-radius: $border-radius-md;
-  cursor: pointer;
+.form__radio-icon {
+  opacity: 0.5;
   transition: $transition;
-  outline: none;
+  cursor: pointer;
+}
+
+.icon--smile-good {
+  @include icon-background(40px, 40px, "../../assets/images/smile-good.svg");
+}
+
+.icon--smile-maybe {
+  @include icon-background(40px, 40px, "../../assets/images/smile-maybe.svg");
+}
+
+.icon--smile-bad {
+  @include icon-background(40px, 40px, "../../assets/images/smile-bad.svg");
+}
+
+.form__check {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.form__button {
+  padding: 10px 40px;
+  font-size: map-get($font-size, m);
+  color: $color-font-light-regular;
+  background-color: $color-accent;
+  border: none;
+  border-radius: $border-radius-md;
+  transition: $transition;
+  cursor: pointer;
 
   &:hover {
     background-color: $color-accent-2;
   }
 }
 
-.form__file {
+.form__error {
+  display: inline-block;
+  text-align: center;
+  font-size: map-get($font-size, xs);
+  visibility: hidden;
+  color: $color-font-error;
+  transition: $transition;
+
+  &--active {
+    visibility: visible;
+  }
+}
+
+// ====================== SPECIAL =========================
+
+.form__dropdown {
+  padding: 8px;
+}
+
+.form__textarea {
+  height: 170px;
+  resize: none;
+}
+
+input[type="date"] {
+  padding: 9px;
+  color-scheme: dark;
+}
+
+input[type="file"] {
   width: 100%;
+  padding: 0;
+  background-color: transparent;
+  border: none;
 
   &::-webkit-file-upload-button {
     padding: 10px 20px;
@@ -109,43 +199,19 @@ input[type="date"] {
   }
 }
 
-.form__dropdown {
-  padding: 8px;
-  width: 100%;
-}
+input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
 
-
-// ==================== USER RATING =======================
-
-.form__rating {
-  width: calc(50% - 15px);
-}
-
-.form__textarea {
-  padding: 10px;
-  width: 100%;
-  height: 150px;
-  display: block;
-  box-sizing: border-box;
-  resize: none;
-}
-
-
-// ===================== IMPORTANT ========================
-
-.form__label {
-  width: 100%;
-  font-weight: 500;
-
-  &--file {
-    width: 55%;
+  &:checked + .form__radio-icon {
+    opacity: 1;
   }
 }
 
-.form__item {
-  margin-top: 10px;
-
-  &--short {
-    width: 175px;
-  }
+input[type="checkbox"] {
+  width: map-get($font-size, s);
+  height: map-get($font-size, s);
+  outline: none;
 }
