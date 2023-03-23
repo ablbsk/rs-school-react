@@ -28,3 +28,14 @@ export interface ICharacter {
   url: string;
   created: string;
 }
+
+// export interface IFeedback {
+//   username: string | null;
+//   continents: string | null;
+//   email: string | null;
+//   dateOfBirth: Date | null;
+//   picture: string | null;
+//   rating: string | null;
+//   opinion: string | null;
+//   isConfirm: boolean;
+// }
