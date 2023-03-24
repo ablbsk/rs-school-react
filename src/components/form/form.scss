@@ -162,6 +162,11 @@
   &:hover {
     background-color: $color-accent-2;
   }
+
+  &:disabled {
+    opacity: 0.5;
+    background-color: $color-accent;
+  }
 }
 
 .form__error {

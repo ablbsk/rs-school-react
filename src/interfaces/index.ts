@@ -32,6 +32,7 @@ export interface ICharacter {
 export interface IFeedback {
   data: IFeedbackFields;
   errors: IFeedbackErrors;
+  isButtonActive: boolean;
 }
 
 export interface IFeedbackFields {

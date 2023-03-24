@@ -1,7 +1,7 @@
 import "./form.scss";
-import React, { Component, FormEvent, Ref, RefObject } from "react";
+import React, { Component, FormEvent, Ref } from "react";
 import classNames from "classnames";
-import { IFeedback, IFeedbackError } from "../../interfaces";
+import { IFeedback } from "../../interfaces";
 import validate from "./validation";
 
 class Form extends Component<object, IFeedback> {
@@ -32,6 +32,7 @@ class Form extends Component<object, IFeedback> {
         opinion: null,
         isConfirm: null,
       },
+      isButtonActive: false,
     };
   }
 
@@ -66,6 +67,14 @@ class Form extends Component<object, IFeedback> {
     this.setState({ data, errors });
   }
 
+  checkAgreeCheckbox(e: React.MouseEvent<HTMLInputElement>) {
+    const { checked } = e.target as HTMLInputElement;
+
+    if (checked !== null) {
+      this.setState({ isButtonActive: checked });
+    }
+  }
+
   // eslint-disable-next-line class-methods-use-this
   createError(error: string | null) {
     return (
@@ -80,7 +89,7 @@ class Form extends Component<object, IFeedback> {
   }
 
   render() {
-    const { errors } = this.state;
+    const { errors, isButtonActive } = this.state;
 
     return (
       <div className="form">
@@ -183,7 +192,13 @@ class Form extends Component<object, IFeedback> {
             </div>
             <div className="form__section form__section--wide">
               <label className="form__check" htmlFor="checkbox">
-                <input className="form__checkbox" type="checkbox" id="checkbox" name="checkbox" />
+                <input
+                  className="form__checkbox"
+                  type="checkbox"
+                  id="checkbox"
+                  name="checkbox"
+                  onClick={(e) => this.checkAgreeCheckbox(e)}
+                />
                 agree to send my data
               </label>
               {this.createError(errors.isConfirm)}
@@ -191,6 +206,7 @@ class Form extends Component<object, IFeedback> {
                 className="button form__button"
                 type="submit"
                 onClick={(e: FormEvent) => this.handleSubmit(e)}
+                disabled={!isButtonActive}
               >
                 Create feedback
               </button>
