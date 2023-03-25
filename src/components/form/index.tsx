@@ -4,6 +4,7 @@ import classNames from "classnames";
 import { IFeedback } from "../../interfaces";
 import Notice from "../notice";
 import validate from "./validation";
+import Error from "./error/error";
 
 class Form extends Component<object, IFeedback> {
   private readonly formRef: Ref<HTMLFormElement>;
@@ -82,19 +83,6 @@ class Form extends Component<object, IFeedback> {
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  createError(error: string | null) {
-    return (
-      <span
-        className={classNames("form__error", {
-          "form__error--active": error,
-        })}
-      >
-        {error}
-      </span>
-    );
-  }
-
   showNotice() {
     this.setState({ isNoticeShow: true }, () => {
       setTimeout(() => this.setState({ isNoticeShow: false }), 2000);
@@ -120,7 +108,7 @@ class Form extends Component<object, IFeedback> {
                       type="text"
                       placeholder="Morty"
                     />
-                    {this.createError(errors.username)}
+                    <Error message={errors.username} />
                   </label>
                   <label className="form__label form__label--short" htmlFor="continents">
                     Continents
@@ -140,7 +128,7 @@ class Form extends Component<object, IFeedback> {
                       <option value="antarctica">Antarctica</option>
                       <option value="australia">Australia</option>
                     </select>
-                    {this.createError(errors.continents)}
+                    <Error message={errors.continents} />
                   </label>
                 </div>
                 <div className="form__line">
@@ -152,12 +140,12 @@ class Form extends Component<object, IFeedback> {
                       type="email"
                       placeholder="morty.smith@gmail.com"
                     />
-                    {this.createError(errors.email)}
+                    <Error message={errors.email} />
                   </label>
                   <label className="form__label form__label--short" htmlFor="birth">
                     Date of birth
                     <input id="birth" className="form__item" type="date" />
-                    {this.createError(errors.dateOfBirth)}
+                    <Error message={errors.dateOfBirth} />
                   </label>
                 </div>
                 <div className="form__line">
@@ -169,7 +157,7 @@ class Form extends Component<object, IFeedback> {
                       id="avatar"
                       accept="image/png, image/jpeg, image/jpg"
                     />
-                    {this.createError(errors.picture)}
+                    <Error message={errors.picture} />
                   </label>
                 </div>
               </div>
@@ -206,7 +194,7 @@ class Form extends Component<object, IFeedback> {
                       className="form__textarea form__item"
                       placeholder="What do you think about this animated series?"
                     />
-                    {this.createError(errors.opinion)}
+                    <Error message={errors.opinion} />
                   </label>
                 </div>
               </div>
@@ -221,7 +209,7 @@ class Form extends Component<object, IFeedback> {
                   />
                   agree to send my data
                 </label>
-                {this.createError(errors.isConfirm)}
+                <Error message={errors.isConfirm} />
                 <button
                   className="button form__button"
                   type="submit"

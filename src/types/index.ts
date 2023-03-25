@@ -7,3 +7,7 @@ export type GridType = {
 export type CardType = {
   character: ICharacter;
 };
+
+export type ErrorType = {
+  message: string | null;
+};
