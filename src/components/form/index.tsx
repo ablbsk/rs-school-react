@@ -1,10 +1,15 @@
 import "./form.scss";
 import React, { Component, FormEvent, Ref } from "react";
-import classNames from "classnames";
 import { IFeedback } from "../../interfaces";
-import Notice from "../notice";
 import validate from "./validation";
-import Error from "./error/error";
+import Notice from "../notice";
+import Error from "./error";
+import Select from "./select";
+import Radio from "./radio";
+import Input from "./input";
+import Date from "./date";
+import Picture from "./picture";
+import TextArea from "./textarea";
 
 class Form extends Component<object, IFeedback> {
   private readonly formRef: Ref<HTMLFormElement>;
@@ -73,6 +78,8 @@ class Form extends Component<object, IFeedback> {
         this.showNotice();
       }
     });
+
+    console.log(this.state);
   }
 
   checkAgreeCheckbox(e: React.MouseEvent<HTMLInputElement>) {
@@ -100,110 +107,35 @@ class Form extends Component<object, IFeedback> {
             <form ref={this.formRef} className="form__form">
               <div className="form__section">
                 <div className="form__line">
-                  <label className="form__label" htmlFor="username">
-                    Username
-                    <input
-                      id="username"
-                      className="form__input form__item"
-                      type="text"
-                      placeholder="Morty"
-                    />
-                    <Error message={errors.username} />
-                  </label>
-                  <label className="form__label form__label--short" htmlFor="continents">
-                    Continents
-                    <select
-                      id="continents"
-                      className="form__dropdown form__item form__item--short"
-                      defaultValue="default"
-                    >
-                      <option value="default" disabled>
-                        Select
-                      </option>
-                      <option value="africa">Africa</option>
-                      <option value="asia">Asia</option>
-                      <option value="europe">Europe</option>
-                      <option value="north america">North America</option>
-                      <option value="south america">South America</option>
-                      <option value="antarctica">Antarctica</option>
-                      <option value="australia">Australia</option>
-                    </select>
-                    <Error message={errors.continents} />
-                  </label>
+                  <Input label="Username" type="text" placeholder="Morty" error={errors.username} />
+                  <Select error={errors.continents} />
                 </div>
                 <div className="form__line">
-                  <label className="form__label" htmlFor="email">
-                    Email
-                    <input
-                      className="form__input form__item"
-                      id="email"
-                      type="email"
-                      placeholder="morty.smith@gmail.com"
-                    />
-                    <Error message={errors.email} />
-                  </label>
-                  <label className="form__label form__label--short" htmlFor="birth">
-                    Date of birth
-                    <input id="birth" className="form__item" type="date" />
-                    <Error message={errors.dateOfBirth} />
-                  </label>
+                  <Input
+                    label="Email"
+                    type="email"
+                    placeholder="morty.smith@gmail.com"
+                    error={errors.email}
+                  />
+                  <Date error={errors.dateOfBirth} />
                 </div>
                 <div className="form__line">
-                  <label className="form__label form__label--file" htmlFor="avatar">
-                    Profile picture
-                    <input
-                      className="form__file form__item"
-                      type="file"
-                      id="avatar"
-                      accept="image/png, image/jpeg, image/jpg"
-                    />
-                    <Error message={errors.picture} />
-                  </label>
+                  <Picture error={errors.picture} />
                 </div>
               </div>
               <div className="form__section">
                 <div className="form__line form__line--center form__line--radio">
-                  <span className="form__label">Evaluate the project</span>
-                  <div className="form__radio-container">
-                    <label htmlFor="ratingGood">
-                      <input
-                        id="ratingGood"
-                        type="radio"
-                        name="rating"
-                        value="good"
-                        defaultChecked
-                      />
-                      <span className="form__radio-icon icon--smile-good" />
-                    </label>
-                    <label htmlFor="ratingMaybe">
-                      <input id="ratingMaybe" type="radio" name="rating" value="maybe" />
-                      <span className="form__radio-icon icon--smile-maybe" />
-                    </label>
-                    <label htmlFor="ratingBad">
-                      <input id="ratingBad" type="radio" name="rating" value="bad" />
-                      <span className="form__radio-icon icon--smile-bad" />
-                    </label>
-                  </div>
-                  <span className="form__error">* Wrong value</span>
+                  <Radio error={errors.rating} />
                 </div>
                 <div className="form__line">
-                  <label className="form__label" htmlFor="description">
-                    Describe your opinion
-                    <textarea
-                      id="description"
-                      className="form__textarea form__item"
-                      placeholder="What do you think about this animated series?"
-                    />
-                    <Error message={errors.opinion} />
-                  </label>
+                  <TextArea error={errors.opinion} />
                 </div>
               </div>
               <div className="form__section form__section--wide">
-                <label className="form__check" htmlFor="checkbox">
+                <label className="form__check">
                   <input
                     className="form__checkbox"
                     type="checkbox"
-                    id="checkbox"
                     name="checkbox"
                     onClick={(e) => this.checkAgreeCheckbox(e)}
                   />
