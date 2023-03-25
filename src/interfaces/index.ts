@@ -33,13 +33,14 @@ export interface IFeedback {
   data: IFeedbackFields;
   errors: IFeedbackErrors;
   isButtonActive: boolean;
+  isNoticeShow: boolean;
 }
 
 export interface IFeedbackFields {
   username: string | null;
   continents: string | null;
   email: string | null;
-  dateOfBirth: any | null; // TODO Change type of filed
+  dateOfBirth: string | null;
   picture: string | null;
   rating: string | null;
   opinion: string | null;
