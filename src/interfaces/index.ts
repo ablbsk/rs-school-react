@@ -34,7 +34,6 @@ export interface IFeedback {
 }
 
 export interface IFeedbackForm {
-  data: IFeedbackFields;
   errors: IFeedbackErrors;
   isButtonActive: boolean;
   isNoticeShow: boolean;

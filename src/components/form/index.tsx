@@ -21,16 +21,6 @@ class Form extends Component<{ addFeedback: (feedback: IFeedbackFields) => void 
     this.formRef = React.createRef();
     this.addFeedback = props.addFeedback;
     this.state = {
-      data: {
-        username: null,
-        continents: null,
-        email: null,
-        dateOfBirth: null,
-        picture: null,
-        rating: null,
-        opinion: null,
-        isConfirm: false,
-      },
       errors: {
         username: null,
         continents: null,
@@ -52,39 +42,29 @@ class Form extends Component<{ addFeedback: (feedback: IFeedbackFields) => void 
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       const { current } = this.formRef;
+      const data = {
+        username: current[0].value,
+        continents: current[1].value,
+        email: current[2].value,
+        dateOfBirth: current[3].value,
+        picture: current[4].files,
+        // eslint-disable-next-line no-nested-ternary
+        rating: current[5].checked ? "good" : current[6].checked ? "maybe" : "bad",
+        opinion: current[8].value,
+        isConfirm: current[9].checked,
+      };
 
-      this.setState(
-        {
-          data: {
-            username: current[0].value,
-            continents: current[1].value,
-            email: current[2].value,
-            dateOfBirth: current[3].value,
-            picture: current[4].files,
-            // eslint-disable-next-line no-nested-ternary
-            rating: current[5].checked ? "good" : current[6].checked ? "maybe" : "bad",
-            opinion: current[8].value,
-            isConfirm: current[9].checked,
-          },
-        },
-        this.validateFields
-      );
+      const errors = validate(data);
+      this.setState({ errors }, () => {
+        const result = Object.values(errors).every((item) => item === null);
+        // const result = true;
+
+        if (result) {
+          this.showNotice();
+          this.addFeedback(data);
+        }
+      });
     }
-  }
-
-  validateFields() {
-    const { data } = this.state;
-    const errors = validate(data);
-
-    this.setState({ data, errors }, () => {
-      const result = Object.values(errors).every((item) => item === null);
-      // const result = true;
-
-      if (result) {
-        this.showNotice();
-        this.addFeedback(data);
-      }
-    });
   }
 
   checkAgreeCheckbox(e: React.MouseEvent<HTMLInputElement>) {
