@@ -56,7 +56,7 @@ const validate = (inputs: IFeedbackFields): IFeedbackErrors => {
     email: /^([\w.]{6,16})+@([\w-]+\.)+[\w-]{2,4}$/,
     // dateOfBirth: /(0?[1-9]|[12][0-9]|3[01])-(0?[1-9]|1[012])-\d{4}$/,
     dateOfBirth: /\d{4}-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])$/,
-    opinion: /([0-9a-zA-Z.,!?:;-]\s*){20,300}$/,
+    opinion: /([0-9a-zA-Z.,'`!?:;-]\s*){20,300}$/,
   };
 
   return {
@@ -64,7 +64,7 @@ const validate = (inputs: IFeedbackFields): IFeedbackErrors => {
     continents: inputs.continents === "default" ? messages.wrong : null,
     email: validateFieldWithSize(inputs.email, patterns.email, 10, 40),
     dateOfBirth: validateField(inputs.dateOfBirth, patterns.dateOfBirth),
-    picture: inputs.picture ? null : messages.notImage,
+    picture: inputs.picture !== null && inputs.picture.length === 1 ? null : messages.notImage,
     rating: null,
     opinion: validateFieldWithSize(inputs.opinion, patterns.opinion, 20, 300),
     isConfirm: inputs.isConfirm ? null : messages.wrong,
