@@ -64,7 +64,7 @@ const validate = (inputs: IFeedbackFields): IFeedbackErrors => {
     continents: inputs.continents === "default" ? messages.wrong : null,
     email: validateFieldWithSize(inputs.email, patterns.email, 10, 40),
     dateOfBirth: validateField(inputs.dateOfBirth, patterns.dateOfBirth),
-    picture: inputs.picture !== null && inputs.picture.length === 1 ? null : messages.notImage,
+    picture: inputs.picture !== null ? null : messages.notImage,
     rating: null,
     opinion: validateFieldWithSize(inputs.opinion, patterns.opinion, 20, 300),
     isConfirm: inputs.isConfirm ? null : messages.wrong,

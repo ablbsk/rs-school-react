@@ -4,14 +4,10 @@ import classNames from "classnames";
 import { ItemType } from "../../../types";
 
 const Item: FunctionComponent<ItemType> = ({ feedback }) => {
-  const getFile = (): string => {
-    return feedback.picture !== null ? window.URL.createObjectURL(feedback.picture[0]) : "error";
-  };
-
   return (
     <li className="item">
       <div className="item__wrapper">
-        <img className="item__picture" src={getFile()} alt="Profile" />
+        <img className="item__picture" src={feedback.picture} alt="Profile" />
         <div className="item__column">
           <h3 className="item__header">{feedback.username}</h3>
           <h4 className="item__subheader">{feedback.email}</h4>

@@ -41,7 +41,7 @@ export interface IFeedbackFields {
   continents: string | null;
   email: string | null;
   dateOfBirth: string | null;
-  picture: FileList | null;
+  picture: string;
   rating: string | null;
   opinion: string | null;
   isConfirm: boolean;

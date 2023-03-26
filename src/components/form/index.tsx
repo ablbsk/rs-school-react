@@ -29,7 +29,7 @@ const Form: FunctionComponent<FormType> = ({
         continents: current[1].value,
         email: current[2].value,
         dateOfBirth: current[3].value,
-        picture: current[4].files,
+        picture: window.URL.createObjectURL(current[4].files[0]),
         // eslint-disable-next-line no-nested-ternary
         rating: current[5].checked ? "good" : current[6].checked ? "maybe" : "bad",
         opinion: current[8].value,

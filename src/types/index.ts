@@ -1,5 +1,5 @@
-import { ICharacter, IFeedbackErrors, IFeedbackFields } from "../interfaces";
 import React, { Ref } from "react";
+import { ICharacter, IFeedbackErrors, IFeedbackFields } from "../interfaces";
 
 export type GridType = {
   characters: ICharacter[];
@@ -40,7 +40,7 @@ export type ItemType = {
     continents: string | null;
     email: string | null;
     dateOfBirth: string | null;
-    picture: FileList | null;
+    picture: string;
     rating: string | null;
     opinion: string | null;
     isConfirm: boolean;

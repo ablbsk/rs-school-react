@@ -30,12 +30,18 @@ class Feedback extends Component<object, IFeedback> {
 
   getFeedback(feedback: IFeedbackFields) {
     const errors = validate(feedback);
+
     this.setState({ errors }, () => {
       const result = Object.values(errors).every((item) => item === null);
 
       if (result) {
         const { feedbackList } = this.state;
-        this.setState({ feedbackList: [...feedbackList, feedback] });
+        this.setState({ feedbackList: [...feedbackList, feedback] }, () => {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          this.formRef.current.reset();
+          this.setState({ isButtonActive: false });
+        });
         this.showNotice();
       }
     });
