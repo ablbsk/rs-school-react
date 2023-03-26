@@ -32,7 +32,6 @@ class Feedback extends Component<object, IFeedback> {
     const errors = validate(feedback);
     this.setState({ errors }, () => {
       const result = Object.values(errors).every((item) => item === null);
-      // const result = true;
 
       if (result) {
         const { feedbackList } = this.state;
