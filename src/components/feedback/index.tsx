@@ -3,7 +3,7 @@ import React, { Component, Ref } from "react";
 import Form from "../form";
 import { IFeedback, IFeedbackFields } from "../../interfaces";
 import Item from "./item";
-import validate from "../form/validation";
+import validate from "./validation";
 
 class Feedback extends Component<object, IFeedback> {
   private readonly formRef: Ref<HTMLFormElement>;
