@@ -1,0 +1,77 @@
+@import "../../../styles/constants";
+@import "../../../styles/mixins";
+
+.item {
+  width: calc(50% - 15px);
+  font-size: map-get($font-size, m);
+  font-weight: 400;
+  background-color: $color-card-background;
+  border-radius: $border-radius-lg;
+  transition: $transition;
+
+  @include media-lg {
+    width: 100%;
+  }
+}
+
+.item__wrapper {
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+
+  @include media-sm {
+    padding: 15px;
+    gap: 5px 10px;
+  }
+}
+
+.item__picture {
+  width: 50px;
+  height: 50px;
+  display: block;
+  border-radius: 50%;
+  background-color: #cf112b;
+  transition: $transition;
+
+  @include media-2sm {
+    display: none;
+  }
+}
+
+.item__column {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex-grow: 2;
+}
+
+.item__header {
+  font-size: map-get($font-size, xl);
+
+  @include media-2sm {
+    font-size: map-get($font-size, l);
+  }
+}
+
+.item__subheader {
+  font-size: map-get($font-size, m);
+  font-weight: 500;
+}
+
+.item__info {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 5px;
+  font-size: map-get($font-size, s);
+}
+
+.item__info-item {
+  text-transform: capitalize;
+}
+
+.item__description {
+  width: 100%;
+  font-size: 2rem;
+}

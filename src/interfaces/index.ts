@@ -30,6 +30,10 @@ export interface ICharacter {
 }
 
 export interface IFeedback {
+  feedbackList: IFeedbackFields[];
+}
+
+export interface IFeedbackForm {
   data: IFeedbackFields;
   errors: IFeedbackErrors;
   isButtonActive: boolean;
@@ -41,7 +45,7 @@ export interface IFeedbackFields {
   continents: string | null;
   email: string | null;
   dateOfBirth: string | null;
-  picture: string | null;
+  picture: FileList | null;
   rating: string | null;
   opinion: string | null;
   isConfirm: boolean;

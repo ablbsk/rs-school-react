@@ -1,6 +1,6 @@
 import "./form.scss";
 import React, { Component, FormEvent, Ref } from "react";
-import { IFeedback } from "../../interfaces";
+import { IFeedbackFields, IFeedbackForm } from "../../interfaces";
 import validate from "./validation";
 import Notice from "../notice";
 import Error from "./error";
@@ -11,13 +11,15 @@ import Date from "./date";
 import Picture from "./picture";
 import TextArea from "./textarea";
 
-class Form extends Component<object, IFeedback> {
+class Form extends Component<{ addFeedback: (feedback: IFeedbackFields) => void }, IFeedbackForm> {
   private readonly formRef: Ref<HTMLFormElement>;
 
-  constructor(props: object) {
+  private readonly addFeedback: (feedback: IFeedbackFields) => void;
+
+  constructor(props: { addFeedback: (feedback: IFeedbackFields) => void }) {
     super(props);
     this.formRef = React.createRef();
-
+    this.addFeedback = props.addFeedback;
     this.state = {
       data: {
         username: null,
@@ -47,6 +49,8 @@ class Form extends Component<object, IFeedback> {
   handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (this.formRef) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       const { current } = this.formRef;
 
       this.setState(
@@ -56,7 +60,7 @@ class Form extends Component<object, IFeedback> {
             continents: current[1].value,
             email: current[2].value,
             dateOfBirth: current[3].value,
-            picture: current[4].value,
+            picture: current[4].files,
             // eslint-disable-next-line no-nested-ternary
             rating: current[5].checked ? "good" : current[6].checked ? "maybe" : "bad",
             opinion: current[8].value,
@@ -74,12 +78,13 @@ class Form extends Component<object, IFeedback> {
 
     this.setState({ data, errors }, () => {
       const result = Object.values(errors).every((item) => item === null);
+      // const result = true;
+
       if (result) {
         this.showNotice();
+        this.addFeedback(data);
       }
     });
-
-    console.log(this.state);
   }
 
   checkAgreeCheckbox(e: React.MouseEvent<HTMLInputElement>) {

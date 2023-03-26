@@ -22,3 +22,17 @@ export type InputFiledType = {
 export type ErrorType = {
   message: string | null;
 };
+
+export type ItemType = {
+  key: string;
+  feedback: {
+    username: string | null;
+    continents: string | null;
+    email: string | null;
+    dateOfBirth: string | null;
+    picture: FileList | null;
+    rating: string | null;
+    opinion: string | null;
+    isConfirm: boolean;
+  };
+};
