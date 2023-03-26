@@ -31,9 +31,6 @@ export interface ICharacter {
 
 export interface IFeedback {
   feedbackList: IFeedbackFields[];
-}
-
-export interface IFeedbackForm {
   errors: IFeedbackErrors;
   isButtonActive: boolean;
   isNoticeShow: boolean;

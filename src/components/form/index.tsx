@@ -1,7 +1,5 @@
 import "./form.scss";
-import React, { Component, FormEvent, Ref } from "react";
-import { IFeedbackFields, IFeedbackForm } from "../../interfaces";
-import validate from "./validation";
+import React, { FunctionComponent, FormEvent } from "react";
 import Notice from "../notice";
 import Error from "./error";
 import Select from "./select";
@@ -10,38 +8,22 @@ import Input from "./input";
 import Date from "./date";
 import Picture from "./picture";
 import TextArea from "./textarea";
+import { FormType } from "../../types";
 
-class Form extends Component<{ addFeedback: (feedback: IFeedbackFields) => void }, IFeedbackForm> {
-  private readonly formRef: Ref<HTMLFormElement>;
-
-  private readonly addFeedback: (feedback: IFeedbackFields) => void;
-
-  constructor(props: { addFeedback: (feedback: IFeedbackFields) => void }) {
-    super(props);
-    this.formRef = React.createRef();
-    this.addFeedback = props.addFeedback;
-    this.state = {
-      errors: {
-        username: null,
-        continents: null,
-        email: null,
-        dateOfBirth: null,
-        picture: null,
-        rating: null,
-        opinion: null,
-        isConfirm: null,
-      },
-      isButtonActive: false,
-      isNoticeShow: false,
-    };
-  }
-
-  handleSubmit(e: FormEvent) {
+const Form: FunctionComponent<FormType> = ({
+  formRef,
+  errors,
+  isButtonActive,
+  isNoticeShow,
+  isFormConfirm,
+  addFeedback,
+}) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (this.formRef) {
+    if (formRef) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      const { current } = this.formRef;
+      const { current } = formRef;
       const data = {
         username: current[0].value,
         continents: current[1].value,
@@ -54,95 +36,68 @@ class Form extends Component<{ addFeedback: (feedback: IFeedbackFields) => void 
         isConfirm: current[9].checked,
       };
 
-      const errors = validate(data);
-      this.setState({ errors }, () => {
-        const result = Object.values(errors).every((item) => item === null);
-        // const result = true;
-
-        if (result) {
-          this.showNotice();
-          this.addFeedback(data);
-        }
-      });
+      addFeedback(data);
     }
-  }
+  };
 
-  checkAgreeCheckbox(e: React.MouseEvent<HTMLInputElement>) {
-    const { checked } = e.target as HTMLInputElement;
-
-    if (checked !== null) {
-      this.setState({ isButtonActive: checked });
-    }
-  }
-
-  showNotice() {
-    this.setState({ isNoticeShow: true }, () => {
-      setTimeout(() => this.setState({ isNoticeShow: false }), 2000);
-    });
-  }
-
-  render() {
-    const { errors, isButtonActive, isNoticeShow } = this.state;
-
-    return (
-      <>
-        <div className="form">
-          <h3 className="form__header">Send us your feedback!</h3>
-          <div className="form__container">
-            <form ref={this.formRef} className="form__form">
-              <div className="form__section">
-                <div className="form__line">
-                  <Input label="Username" type="text" placeholder="Morty" error={errors.username} />
-                  <Select error={errors.continents} />
-                </div>
-                <div className="form__line">
-                  <Input
-                    label="Email"
-                    type="email"
-                    placeholder="morty.smith@gmail.com"
-                    error={errors.email}
-                  />
-                  <Date error={errors.dateOfBirth} />
-                </div>
-                <div className="form__line">
-                  <Picture error={errors.picture} />
-                </div>
+  return (
+    <>
+      <div className="form">
+        <h3 className="form__header">Send us your feedback!</h3>
+        <div className="form__container">
+          <form ref={formRef} className="form__form">
+            <div className="form__section">
+              <div className="form__line">
+                <Input label="Username" type="text" placeholder="Morty" error={errors.username} />
+                <Select error={errors.continents} />
               </div>
-              <div className="form__section">
-                <div className="form__line form__line--center form__line--radio">
-                  <Radio error={errors.rating} />
-                </div>
-                <div className="form__line">
-                  <TextArea error={errors.opinion} />
-                </div>
+              <div className="form__line">
+                <Input
+                  label="Email"
+                  type="email"
+                  placeholder="morty.smith@gmail.com"
+                  error={errors.email}
+                />
+                <Date error={errors.dateOfBirth} />
               </div>
-              <div className="form__section form__section--wide">
-                <label className="form__check">
-                  <input
-                    className="form__checkbox"
-                    type="checkbox"
-                    name="checkbox"
-                    onClick={(e) => this.checkAgreeCheckbox(e)}
-                  />
-                  agree to send my data
-                </label>
-                <Error message={errors.isConfirm} />
-                <button
-                  className="button form__button"
-                  type="submit"
-                  onClick={(e: FormEvent) => this.handleSubmit(e)}
-                  disabled={!isButtonActive}
-                >
-                  Create feedback
-                </button>
+              <div className="form__line">
+                <Picture error={errors.picture} />
               </div>
-            </form>
-          </div>
+            </div>
+            <div className="form__section">
+              <div className="form__line form__line--center form__line--radio">
+                <Radio error={errors.rating} />
+              </div>
+              <div className="form__line">
+                <TextArea error={errors.opinion} />
+              </div>
+            </div>
+            <div className="form__section form__section--wide">
+              <label className="form__check">
+                <input
+                  className="form__checkbox"
+                  type="checkbox"
+                  name="checkbox"
+                  onClick={(e) => isFormConfirm(e)}
+                />
+                agree to send my data
+              </label>
+              <Error message={errors.isConfirm} />
+              <button
+                className="button form__button"
+                type="submit"
+                onClick={(e: FormEvent) => handleSubmit(e)}
+                disabled={!isButtonActive}
+              >
+                Create feedback
+              </button>
+            </div>
+          </form>
         </div>
-        {isNoticeShow ? <Notice /> : null}
-      </>
-    );
-  }
-}
+      </div>
+      {isNoticeShow ? <Notice /> : null}
+    </>
+  );
+};
 
 export default Form;

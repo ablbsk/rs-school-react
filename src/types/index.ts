@@ -1,4 +1,5 @@
-import { ICharacter } from "../interfaces";
+import { ICharacter, IFeedbackErrors, IFeedbackFields } from "../interfaces";
+import React, { Ref } from "react";
 
 export type GridType = {
   characters: ICharacter[];
@@ -6,6 +7,15 @@ export type GridType = {
 
 export type CardType = {
   character: ICharacter;
+};
+
+export type FormType = {
+  formRef: Ref<HTMLFormElement>;
+  errors: IFeedbackErrors;
+  isButtonActive: boolean;
+  isNoticeShow: boolean;
+  isFormConfirm: (e: React.MouseEvent<HTMLInputElement>) => void;
+  addFeedback: (feedback: IFeedbackFields) => void;
 };
 
 export type FormFieldType = {
