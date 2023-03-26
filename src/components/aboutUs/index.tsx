@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const AboutUs: FunctionComponent = () => {
   const modules = [
     { name: "Components", isComplete: true },
-    { name: "Forms", isComplete: false },
+    { name: "Forms", isComplete: true },
     { name: "Hooks", isComplete: false },
     { name: "API", isComplete: false },
     { name: "Redux", isComplete: false },
@@ -22,7 +22,9 @@ const AboutUs: FunctionComponent = () => {
       <span className="about-us__separate">Week {i + 1} — </span>
       <Link
         className="about-us__link"
-        to={`https://github.com/rolling-scopes-school/tasks/tree/master/react/modules/module0${item}`}
+        to={`https://github.com/rolling-scopes-school/tasks/tree/master/react/modules/module0${
+          i + 1
+        }`}
       >
         React. {modules[i].name}
       </Link>
