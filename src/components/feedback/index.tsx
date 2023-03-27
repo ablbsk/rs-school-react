@@ -1,12 +1,12 @@
 import "./feedback.scss";
-import React, { Component, Ref } from "react";
+import React, { Component, RefObject } from "react";
 import Form from "../form";
 import { IFeedback, IFeedbackFields } from "../../interfaces";
 import Item from "./item";
 import validate from "./validation";
 
 class Feedback extends Component<object, IFeedback> {
-  private readonly formRef: Ref<HTMLFormElement>;
+  private readonly formRef: RefObject<HTMLFormElement>;
 
   constructor(props: object) {
     super(props);
@@ -37,9 +37,10 @@ class Feedback extends Component<object, IFeedback> {
       if (result) {
         const { feedbackList } = this.state;
         this.setState({ feedbackList: [...feedbackList, feedback] }, () => {
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          this.formRef.current.reset();
+          if (this.formRef.current) {
+            this.formRef.current.reset();
+          }
+
           this.setState({ isButtonActive: false });
         });
         this.showNotice();
