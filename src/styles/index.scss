@@ -1,0 +1,22 @@
+@import "./normalize";
+@import "./mixins";
+@import "./constants";
+@import "./typography";
+
+html {
+  font-size: 10px;
+  font-family: Futura, sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  min-width: 375px;
+  min-height: 100vh;
+  background-color: $color-font-dark-regular;
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 1200px;
+}

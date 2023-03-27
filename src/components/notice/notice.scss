@@ -1,0 +1,46 @@
+@import "../../styles/constants";
+@import "../../styles/mixins";
+
+.notice {
+  width: 300px;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  transition: $transition;
+  border-radius: $border-radius-md;
+  background-color: $color-notice-success;
+  color: $color-font-dark-regular;
+  z-index: 10;
+}
+
+.notice__wrapper {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.notice__column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.notice__title {
+  margin: 0;
+  padding: 0;
+  font-size: map-get($font-size, m);
+  font-weight: 500;
+  cursor: default;
+}
+
+.notice__description {
+  margin: 0;
+  padding: 0;
+  font-size: map-get($font-size, s);
+  cursor: default;
+}
+
+.notice__icon {
+  @include icon-background(40px, 40px, "../../assets/images/notice.svg");
+}

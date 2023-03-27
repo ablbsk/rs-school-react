@@ -1,0 +1,113 @@
+@import "../../styles/constants";
+@import "../../styles/mixins";
+
+.promo {
+  @include icon-background(400px, 100%, "../../assets/images/promo.svg");
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  color: $color-font-dark-regular;
+  background-color: #ffffff;
+}
+
+.promo__header {
+  margin-top: 100px;
+  font-size: map-get($font-size, 4xl);
+  font-weight: 700;
+  transition: $transition;
+  text-align: center;
+  cursor: default;
+
+  @include media-md {
+    margin-top: 75px;
+    font-size: map-get($font-size, 3xl);
+    line-height: 55px;
+  }
+
+  @include media-sm {
+    margin-top: 50px;
+    font-size: map-get($font-size, 2xl);
+    line-height: 55px;
+  }
+}
+
+.search {
+  width: 500px;
+  position: relative;
+
+  @include media-md {
+    width: 350px;
+  }
+
+  @include media-sm {
+    width: 300px;
+  }
+}
+
+.search__input {
+  padding: 10px 40px;
+  width: 100%;
+  font-size: map-get($font-size, l);
+  font-weight: 500;
+  color: $color-font-dark-regular;
+  border: 2px solid $color-font-dark-regular;
+  border-radius: $border-radius-md;
+  box-sizing: border-box;
+  transition: $transition;
+  outline: none;
+
+  &:active,
+  &:focus,
+  &:hover {
+    border-color: $color-accent;
+  }
+
+  @include media-sm {
+    font-size: map-get($font-size, m);
+  }
+}
+
+.search__icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  &:hover {
+    .search__input {
+      border-color: $color-accent;
+    }
+  }
+
+  &--search {
+    @include icon-background(24px, 24px, "../../assets/images/search.svg");
+    left: 10px;
+  }
+}
+
+.search__icon--arrow {
+  @include icon-background(24px, 24px, "../../assets/images/arrow.svg");
+}
+
+.search__button {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+
+  &:hover {
+    .search__input {
+      border-color: $color-accent;
+    }
+  }
+}
