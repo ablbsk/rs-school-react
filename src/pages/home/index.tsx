@@ -1,6 +1,6 @@
 import "./home.scss";
 import React, { Component } from "react";
-import Grid from "../grid";
+import Grid from "../../components/grid";
 import data from "../../data/data.json";
 import { ICharacter } from "../../interfaces";
 

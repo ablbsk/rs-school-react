@@ -1,11 +1,11 @@
 import React, { FunctionComponent } from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "../home";
+import Home from "../../pages/home";
 import Header from "../header";
 import Footer from "../footer";
-import AboutUs from "../aboutUs";
-import NotFound from "../notFound";
-import Feedback from "../feedback";
+import AboutUs from "../../pages/aboutUs";
+import NotFound from "../../pages/notFound";
+import Feedback from "../../pages/feedback";
 
 const App: FunctionComponent = () => {
   return (

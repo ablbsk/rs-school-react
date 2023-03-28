@@ -1,8 +1,8 @@
 import "./feedback.scss";
 import React, { Component, RefObject } from "react";
-import Form from "../form";
+import Form from "../../components/form";
 import { IFeedback, IFeedbackFields } from "../../interfaces";
-import Item from "./item";
+import Item from "../../components/item";
 import validate from "./validation";
 
 class Feedback extends Component<object, IFeedback> {

@@ -1,7 +1,7 @@
 import "./item.scss";
 import React, { FunctionComponent } from "react";
 import classNames from "classnames";
-import { ItemType } from "../../../types";
+import { ItemType } from "../../types";
 
 const Item: FunctionComponent<ItemType> = ({ feedback }) => {
   return (
