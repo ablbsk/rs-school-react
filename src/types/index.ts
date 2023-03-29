@@ -1,5 +1,4 @@
-import React, { Ref } from "react";
-import { ICharacter, IFeedbackErrors, IFeedbackFields } from "../interfaces";
+import { ICharacter, IFeedbackFields } from "../interfaces";
 
 export type GridType = {
   characters: ICharacter[];
@@ -10,27 +9,22 @@ export type CardType = {
 };
 
 export type FormType = {
-  formRef: Ref<HTMLFormElement>;
-  errors: IFeedbackErrors;
-  isButtonActive: boolean;
-  isNoticeShow: boolean;
-  isFormConfirm: (e: React.MouseEvent<HTMLInputElement>) => void;
   addFeedback: (feedback: IFeedbackFields) => void;
 };
 
-export type FormFieldType = {
-  error: string | null;
-};
-
-export type InputFiledType = {
-  label: string;
-  type: string;
-  placeholder: string;
-  error: string | null;
+export type FormValues = {
+  username: string;
+  continents: string;
+  email: string;
+  dateOfBirth: string;
+  picture: FileList;
+  rating: string;
+  opinion: string;
+  isConfirm: boolean;
 };
 
 export type ErrorType = {
-  message: string | null;
+  message: string;
 };
 
 export type ItemType = {
