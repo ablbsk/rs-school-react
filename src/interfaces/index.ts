@@ -30,30 +30,23 @@ export interface ICharacter {
 }
 
 export interface IFeedback {
-  feedbackList: IFeedbackFields[];
-  errors: IFeedbackErrors;
-  isButtonActive: boolean;
-  isNoticeShow: boolean;
-}
-
-export interface IFeedbackFields {
-  username: string | null;
-  continents: string | null;
-  email: string | null;
-  dateOfBirth: string | null;
+  username: string;
+  continents: string;
+  email: string;
+  dateOfBirth: string;
   picture: string;
-  rating: string | null;
-  opinion: string | null;
+  rating: string;
+  opinion: string;
   isConfirm: boolean;
 }
 
-export interface IFeedbackErrors {
-  username: string | null;
-  continents: string | null;
-  email: string | null;
-  dateOfBirth: string | null;
-  picture: string | null;
-  rating: string | null;
-  opinion: string | null;
-  isConfirm: string | null;
+export interface IForm {
+  username: string;
+  continents: string;
+  email: string;
+  dateOfBirth: string;
+  picture: FileList;
+  rating: string;
+  opinion: string;
+  isConfirm: boolean;
 }

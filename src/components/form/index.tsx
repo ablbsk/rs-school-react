@@ -1,7 +1,8 @@
 import "./form.scss";
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
 import { useForm } from "react-hook-form";
-import { FormType, FormValues } from "../../types";
+import { FormType } from "../../types";
+import { IForm } from "../../interfaces";
 import { errorMessages, patterns } from "../../data/constants";
 import Error from "./error";
 
@@ -9,11 +10,17 @@ const Form: FunctionComponent<FormType> = ({ addFeedback }) => {
   const {
     register,
     handleSubmit,
+    reset,
+    getValues,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<IForm>();
 
-  const onSubmit = (data) =>
+  const [isConfirm, setIsConfirm] = useState<boolean>(true);
+
+  const onSubmit = (data: IForm) => {
     addFeedback({ ...data, picture: window.URL.createObjectURL(data.picture[0]) });
+    reset();
+  };
 
   const showError = (type: string) => {
     switch (type) {
@@ -135,15 +142,12 @@ const Form: FunctionComponent<FormType> = ({ addFeedback }) => {
                 className="form__checkbox"
                 type="checkbox"
                 {...register("isConfirm", { required: true })}
+                onClick={() => setIsConfirm(getValues("isConfirm"))}
               />
               agree to send my data
             </label>
             {errors.isConfirm ? showError(errors.isConfirm.type) : null}
-            <button
-              className="button form__button"
-              type="submit"
-              // disabled={!errors.isConfirm}
-            >
+            <button className="button form__button" type="submit" disabled={isConfirm}>
               Create feedback
             </button>
           </div>
