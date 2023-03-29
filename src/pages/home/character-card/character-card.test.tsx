@@ -1,13 +1,13 @@
 import { describe, it } from "vitest";
 import { render, screen } from "@testing-library/react";
 import React from "react";
-import Card from "./index";
-import data from "../../data/data.json";
+import CharacterCard from "./index";
+import data from "../../../data/data.json";
 
 describe("Card component", () => {
   const character = data.results[0];
 
-  beforeEach(() => render(<Card character={character} />));
+  beforeEach(() => render(<CharacterCard character={character} />));
 
   it("should have an image", () => {
     expect(screen.getByRole("img")).toHaveAttribute("src", character.image);

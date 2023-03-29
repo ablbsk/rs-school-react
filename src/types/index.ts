@@ -1,21 +1,21 @@
 import { ICharacter, IFeedback } from "../interfaces";
 
-export type GridType = {
-  characters: ICharacter[];
+export type HomeGridType = {
+  elements: ICharacter[];
 };
 
-export type CardType = {
+export type CharacterCardType = {
   character: ICharacter;
+};
+
+export type FeedbackCardType = {
+  feedback: IFeedback;
 };
 
 export type FeedbackFormType = {
   addFeedback: (feedback: IFeedback) => void;
 };
 
-export type ErrorType = {
+export type InlineErrorType = {
   message: string;
-};
-
-export type FeedbackCardType = {
-  feedback: IFeedback;
 };

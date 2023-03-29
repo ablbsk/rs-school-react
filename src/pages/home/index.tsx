@@ -1,6 +1,6 @@
 import "./home.scss";
 import React, { FunctionComponent, useState, useEffect, BaseSyntheticEvent } from "react";
-import Grid from "../../components/grid";
+import HomeGrid from "./home-grid";
 import data from "../../data/data.json";
 import { ICharacter } from "../../interfaces";
 
@@ -49,7 +49,7 @@ const Home: FunctionComponent = () => {
           </button>
         </div>
       </div>
-      <Grid characters={characters} />
+      <HomeGrid elements={characters} />
     </>
   );
 };

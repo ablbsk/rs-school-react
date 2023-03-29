@@ -1,12 +1,12 @@
-@import "../../styles/constants";
-@import "../../styles/mixins";
+@import "../../../styles/constants";
+@import "../../../styles/mixins";
 
-.grid {
+.home-grid {
   background-color: $color-font-dark-regular;
   color: $color-font-light-regular;
 }
 
-.grid__wrapper {
+.home-grid__wrapper {
   padding: 60px 30px 100px 30px;
   display: flex;
   justify-content: space-between;
@@ -20,7 +20,7 @@
   }
 }
 
-.grid__header {
+.home-grid__header {
   margin: 30px auto;
   font-size: map-get($font-size, xl);
 }

@@ -1,7 +1,7 @@
-@import "../../styles/constants";
-@import "../../styles/mixins";
+@import "../../../styles/constants";
+@import "../../../styles/mixins";
 
-.card {
+.character-card {
   width: calc(50% - 15px);
   font-size: map-get($font-size, s);
   background-color: $color-card-background;
@@ -26,7 +26,7 @@
   }
 }
 
-.card__wrapper {
+.character-card__wrapper {
   margin: 10px;
   display: flex;
   gap: 20px;
@@ -36,7 +36,7 @@
   }
 }
 
-.card__column {
+.character-card__column {
   &--img {
     @include media-sm {
       vertical-align: middle;
@@ -48,7 +48,7 @@
   }
 }
 
-.card__img {
+.character-card__img {
   height: 200px;
   width: auto;
   border-radius: $border-radius-md;
@@ -71,7 +71,7 @@
   }
 }
 
-.card__header {
+.character-card__header {
   font-size: map-get($font-size, l);
 
   @include media-lg {
@@ -87,7 +87,7 @@
   }
 }
 
-.card__tags {
+.character-card__tags {
   margin: 20px 0;
   display: flex;
   gap: 10px;
@@ -102,7 +102,7 @@
   }
 }
 
-.card__tag {
+.character-card__tag {
   padding: 3px 5px;
   background-color: $color-tag-default;
   border: 1px solid $color-tag-default;
@@ -134,7 +134,7 @@
   }
 }
 
-.card__description {
+.character-card__description {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -148,12 +148,12 @@
   }
 }
 
-.card__text {
+.character-card__text {
   margin: 0;
   padding: 0;
 }
 
-.card__title {
+.character-card__title {
   padding-right: 10px;
   color: $color-tag-default;
   font-weight: 500;
