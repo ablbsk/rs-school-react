@@ -3,8 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import Home from "../../pages/home";
 import Header from "../header";
 import Footer from "../footer";
-import AboutUs from "../../pages/aboutUs";
-import NotFound from "../../pages/notFound";
+import AboutUs from "../../pages/about-us";
+import NotFound from "../../pages/not-found";
 import Feedback from "../../pages/feedback";
 
 const App: FunctionComponent = () => {
