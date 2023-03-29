@@ -3,7 +3,7 @@ import React, { FunctionComponent, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FeedbackFormType } from "../../../types";
 import { IFeedbaclForm } from "../../../interfaces";
-import { errorMessages, patterns } from "../../../data/constants";
+import { errorMessages, patterns } from "../../../utils/constants";
 import InlineError from "../inline-error";
 
 const FeedbackForm: FunctionComponent<FeedbackFormType> = ({ addFeedback }) => {

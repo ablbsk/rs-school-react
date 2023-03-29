@@ -2,7 +2,7 @@ import { describe, it } from "vitest";
 import { render, screen } from "@testing-library/react";
 import React from "react";
 import CharacterCard from "./index";
-import data from "../../../data/data.json";
+import data from "../../../utils/data.json";
 
 describe("Card component", () => {
   const character = data.results[0];
