@@ -3,11 +3,11 @@ import React, { FunctionComponent } from "react";
 import classNames from "classnames";
 import { ErrorType } from "../../../types";
 
-const Error: FunctionComponent<ErrorType> = ({ message }) => {
+const InlineError: FunctionComponent<ErrorType> = ({ message }) => {
   return (
     <span
-      className={classNames("form__error", {
-        "form__error--active": message,
+      className={classNames("inline-error", {
+        "inline-error--active": message,
       })}
     >
       {message}
@@ -15,4 +15,4 @@ const Error: FunctionComponent<ErrorType> = ({ message }) => {
   );
 };
 
-export default Error;
+export default InlineError;

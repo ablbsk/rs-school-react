@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { FormType } from "../../types";
 import { IForm } from "../../interfaces";
 import { errorMessages, patterns } from "../../data/constants";
-import Error from "./error";
+import InlineError from "./inlineError";
 
 const Form: FunctionComponent<FormType> = ({ addFeedback }) => {
   const {
@@ -25,11 +25,15 @@ const Form: FunctionComponent<FormType> = ({ addFeedback }) => {
   const showError = (type: string) => {
     switch (type) {
       case "required":
-        return <Error message={errorMessages.empty} />;
+        return <InlineError message={errorMessages.empty} />;
+      case "minLength":
+        return <InlineError message={errorMessages.short} />;
+      case "maxLength":
+        return <InlineError message={errorMessages.long} />;
       case "pattern":
-        return <Error message={errorMessages.wrong} />;
+        return <InlineError message={errorMessages.wrong} />;
       default:
-        return <Error message={errorMessages.wrong} />;
+        return <InlineError message={errorMessages.wrong} />;
     }
   };
 
@@ -46,7 +50,13 @@ const Form: FunctionComponent<FormType> = ({ addFeedback }) => {
                   className="form__input form__item"
                   type="text"
                   placeholder="Morty"
-                  {...register("username", { required: true, pattern: patterns.username })}
+                  autoComplete="off"
+                  {...register("username", {
+                    required: true,
+                    pattern: patterns.username,
+                    minLength: 4,
+                    maxLength: 20,
+                  })}
                 />
                 {errors.username ? showError(errors.username.type) : null}
               </label>
@@ -78,7 +88,13 @@ const Form: FunctionComponent<FormType> = ({ addFeedback }) => {
                   className="form__input form__item"
                   type="text"
                   placeholder="morty.smith@gmail.com"
-                  {...register("email", { required: true, pattern: patterns.email })}
+                  autoComplete="off"
+                  {...register("email", {
+                    required: true,
+                    pattern: patterns.email,
+                    minLength: 8,
+                    maxLength: 24,
+                  })}
                 />
                 {errors.email ? showError(errors.email.type) : null}
               </label>
@@ -130,7 +146,12 @@ const Form: FunctionComponent<FormType> = ({ addFeedback }) => {
                 <textarea
                   className="form__textarea form__item"
                   placeholder="What do you think about this animated series?"
-                  {...register("opinion", { required: true, pattern: patterns.opinion })}
+                  {...register("opinion", {
+                    required: true,
+                    pattern: patterns.opinion,
+                    minLength: 20,
+                    maxLength: 300,
+                  })}
                 />
                 {errors.opinion ? showError(errors.opinion.type) : null}
               </label>

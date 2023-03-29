@@ -11,5 +11,4 @@ export const errorMessages = {
   short: "* Value of this field too short",
   long: "* Value of this field too long",
   wrong: "* Wrong value",
-  notImage: "* Please, add image",
 };
