@@ -1,23 +1,23 @@
-import "./form.scss";
+import "./feedback-form.scss";
 import React, { FunctionComponent, useState } from "react";
 import { useForm } from "react-hook-form";
-import { FormType } from "../../types";
-import { IForm } from "../../interfaces";
-import { errorMessages, patterns } from "../../data/constants";
-import InlineError from "./inlineError";
+import { FeedbackFormType } from "../../../types";
+import { IFeedbaclForm } from "../../../interfaces";
+import { errorMessages, patterns } from "../../../data/constants";
+import InlineError from "../inline-error";
 
-const Form: FunctionComponent<FormType> = ({ addFeedback }) => {
+const FeedbackForm: FunctionComponent<FeedbackFormType> = ({ addFeedback }) => {
   const {
     register,
     handleSubmit,
     reset,
     getValues,
     formState: { errors },
-  } = useForm<IForm>();
+  } = useForm<IFeedbaclForm>();
 
   const [isConfirm, setIsConfirm] = useState<boolean>(true);
 
-  const onSubmit = (data: IForm) => {
+  const onSubmit = (data: IFeedbaclForm) => {
     addFeedback({ ...data, picture: window.URL.createObjectURL(data.picture[0]) });
     reset();
   };
@@ -38,16 +38,16 @@ const Form: FunctionComponent<FormType> = ({ addFeedback }) => {
   };
 
   return (
-    <div className="form">
-      <h3 className="form__header">Send us your feedback!</h3>
-      <div className="form__container">
-        <form className="form__form" onSubmit={handleSubmit(onSubmit)}>
-          <div className="form__section">
-            <div className="form__line">
-              <label className="form__label">
+    <div className="feedback-form">
+      <h3 className="feedback-form__header">Send us your feedback!</h3>
+      <div className="feedback-form__container">
+        <form className="feedback-form__form" onSubmit={handleSubmit(onSubmit)}>
+          <div className="feedback-form__section">
+            <div className="feedback-form__line">
+              <label className="feedback-form__label">
                 Username
                 <input
-                  className="form__input form__item"
+                  className="feedback-form__input feedback-form__item"
                   type="text"
                   placeholder="Morty"
                   autoComplete="off"
@@ -60,10 +60,10 @@ const Form: FunctionComponent<FormType> = ({ addFeedback }) => {
                 />
                 {errors.username ? showError(errors.username.type) : null}
               </label>
-              <label className="form__label form__label--short">
+              <label className="feedback-form__label feedback-form__label--short">
                 Continents
                 <select
-                  className="form__dropdown form__item form__item--short"
+                  className="feedback-form__dropdown feedback-form__item feedback-form__item--short"
                   defaultValue="default"
                   {...register("continents", { required: true, pattern: patterns.continents })}
                 >
@@ -81,11 +81,11 @@ const Form: FunctionComponent<FormType> = ({ addFeedback }) => {
                 {errors.continents ? showError(errors.continents.type) : null}
               </label>
             </div>
-            <div className="form__line">
-              <label className="form__label">
+            <div className="feedback-form__line">
+              <label className="feedback-form__label">
                 Email
                 <input
-                  className="form__input form__item"
+                  className="feedback-form__input feedback-form__item"
                   type="text"
                   placeholder="morty.smith@gmail.com"
                   autoComplete="off"
@@ -98,21 +98,21 @@ const Form: FunctionComponent<FormType> = ({ addFeedback }) => {
                 />
                 {errors.email ? showError(errors.email.type) : null}
               </label>
-              <label className="form__label form__label--short">
+              <label className="feedback-form__label feedback-form__label--short">
                 Date of birth
                 <input
-                  className="form__item"
+                  className="feedback-form__item"
                   type="date"
                   {...register("dateOfBirth", { required: true, pattern: patterns.dateOfBirth })}
                 />
                 {errors.dateOfBirth ? showError(errors.dateOfBirth.type) : null}
               </label>
             </div>
-            <div className="form__line">
-              <label className="form__label form__label--file">
+            <div className="feedback-form__line">
+              <label className="feedback-form__label feedback-form__label--file">
                 Profile picture
                 <input
-                  className="form__file form__item"
+                  className="feedback-form__file feedback-form__item"
                   type="file"
                   accept="image/png, image/jpeg, image/jpg"
                   {...register("picture", { required: true })}
@@ -121,30 +121,30 @@ const Form: FunctionComponent<FormType> = ({ addFeedback }) => {
               </label>
             </div>
           </div>
-          <div className="form__section">
-            <div className="form__line form__line--center form__line--radio">
-              <span className="form__label">Evaluate the project</span>
-              <div className="form__radio-container">
+          <div className="feedback-form__section">
+            <div className="feedback-form__line feedback-form__line--center feedback-form__line--radio">
+              <span className="feedback-form__label">Evaluate the project</span>
+              <div className="feedback-form__radio-container">
                 <label htmlFor="ratingGood" {...register("rating")}>
                   <input id="ratingGood" type="radio" name="rating" value="good" defaultChecked />
-                  <span className="form__radio-icon icon--smile-good" />
+                  <span className="feedback-form__rating icon--smile-good" />
                 </label>
                 <label htmlFor="ratingMaybe" {...register("rating")}>
                   <input id="ratingMaybe" type="radio" name="rating" value="maybe" />
-                  <span className="form__radio-icon icon--smile-maybe" />
+                  <span className="feedback-form__rating icon--smile-maybe" />
                 </label>
                 <label htmlFor="ratingBad" {...register("rating")}>
                   <input id="ratingBad" type="radio" name="rating" value="bad" />
-                  <span className="form__radio-icon icon--smile-bad" />
+                  <span className="feedback-form__rating icon--smile-bad" />
                 </label>
               </div>
               {errors.rating ? showError(errors.rating.type) : null}
             </div>
-            <div className="form__line">
-              <label className="form__label">
+            <div className="feedback-form__line">
+              <label className="feedback-form__label">
                 Describe your opinion
                 <textarea
-                  className="form__textarea form__item"
+                  className="feedback-form__textarea feedback-form__item"
                   placeholder="What do you think about this animated series?"
                   {...register("opinion", {
                     required: true,
@@ -157,10 +157,10 @@ const Form: FunctionComponent<FormType> = ({ addFeedback }) => {
               </label>
             </div>
           </div>
-          <div className="form__section form__section--wide">
-            <label className="form__check">
+          <div className="feedback-form__section feedback-form__section--wide">
+            <label className="feedback-form__check">
               <input
-                className="form__checkbox"
+                className="feedback-form__checkbox"
                 type="checkbox"
                 {...register("isConfirm", { required: true })}
                 onClick={() => setIsConfirm(getValues("isConfirm"))}
@@ -168,7 +168,7 @@ const Form: FunctionComponent<FormType> = ({ addFeedback }) => {
               agree to send my data
             </label>
             {errors.isConfirm ? showError(errors.isConfirm.type) : null}
-            <button className="button form__button" type="submit" disabled={isConfirm}>
+            <button className="button feedback-form__button" type="submit" disabled={isConfirm}>
               Create feedback
             </button>
           </div>
@@ -178,4 +178,4 @@ const Form: FunctionComponent<FormType> = ({ addFeedback }) => {
   );
 };
 
-export default Form;
+export default FeedbackForm;

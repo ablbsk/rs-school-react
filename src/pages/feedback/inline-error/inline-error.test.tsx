@@ -3,8 +3,8 @@ import { render, screen } from "@testing-library/react";
 import React from "react";
 import InlineError from "./index";
 
-describe("Textarea in form component", () => {
-  it("should have an inlineError", () => {
+describe("Textarea in feedback-form component", () => {
+  it("should have an inline-error", () => {
     render(<InlineError message="Empty value" />);
     expect(screen.getByText("Empty value")).toBeInTheDocument();
   });

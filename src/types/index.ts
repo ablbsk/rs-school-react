@@ -8,7 +8,7 @@ export type CardType = {
   character: ICharacter;
 };
 
-export type FormType = {
+export type FeedbackFormType = {
   addFeedback: (feedback: IFeedback) => void;
 };
 
@@ -16,6 +16,6 @@ export type ErrorType = {
   message: string;
 };
 
-export type ItemType = {
+export type FeedbackCardType = {
   feedback: IFeedback;
 };

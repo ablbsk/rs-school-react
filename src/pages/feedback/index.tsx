@@ -1,9 +1,9 @@
 import "./feedback.scss";
 import React, { FunctionComponent, useEffect, useState } from "react";
 import { IFeedback } from "../../interfaces";
-import Form from "../../components/form";
+import FeedbackForm from "./feedback-form";
 import Notice from "../../components/notice";
-import Item from "../../components/item";
+import FeedbackCard from "./feedback-card";
 
 const Feedback: FunctionComponent = () => {
   const [feedback, setFeedback] = useState<IFeedback[]>([]);
@@ -19,7 +19,9 @@ const Feedback: FunctionComponent = () => {
   const addFeedback = (formData: IFeedback) => setFeedback([...feedback, formData]);
 
   const createCard = () => {
-    const cards = feedback.map((item: IFeedback) => <Item key={item.username} feedback={item} />);
+    const cards = feedback.map((item: IFeedback) => (
+      <FeedbackCard key={item.username} feedback={item} />
+    ));
     return <ul className="feedback__list">{cards}</ul>;
   };
 
@@ -29,7 +31,7 @@ const Feedback: FunctionComponent = () => {
         <span className="feedback__img" />
         <div className="wrapper feedback__wrapper">
           <h2 className="feedback__header">Feedback</h2>
-          <Form addFeedback={(formData: IFeedback) => addFeedback(formData)} />
+          <FeedbackForm addFeedback={(formData: IFeedback) => addFeedback(formData)} />
           {feedback ? createCard() : null}
         </div>
       </section>

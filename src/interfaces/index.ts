@@ -40,7 +40,7 @@ export interface IFeedback {
   isConfirm: boolean;
 }
 
-export interface IForm {
+export interface IFeedbaclForm {
   username: string;
   continents: string;
   email: string;

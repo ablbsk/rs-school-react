@@ -1,7 +1,7 @@
-@import "../../styles/constants";
-@import "../../styles/mixins";
+@import "../../../styles/constants";
+@import "../../../styles/mixins";
 
-.form {
+.feedback-form {
   font-size: map-get($font-size, m);
   font-weight: 400;
   background-color: $color-card-background;
@@ -9,7 +9,7 @@
   transition: $transition;
 }
 
-.form__header {
+.feedback-form__header {
   padding: 20px 0;
   font-size: map-get($font-size, l);
   font-weight: 500;
@@ -18,11 +18,11 @@
   border-radius: $border-radius-lg $border-radius-lg 0 0;
 }
 
-.form__container {
+.feedback-form__container {
   padding: 30px;
 }
 
-.form__form {
+.feedback-form__form {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -35,7 +35,7 @@
   }
 }
 
-.form__section {
+.feedback-form__section {
   width: calc(50% - 15px);
   display: flex;
   justify-content: space-between;
@@ -56,7 +56,7 @@
   }
 }
 
-.form__line {
+.feedback-form__line {
   width: 100%;
   display: flex;
   gap: 30px;
@@ -74,14 +74,15 @@
   }
 }
 
-.form__radio-container {
+.feedback-form__radio-container {
   display: flex;
   gap: 30px;
 }
 
+
 // ===================== FORM ITEM ========================
 
-.form__label {
+.feedback-form__label {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -97,7 +98,7 @@
   }
 }
 
-.form__item {
+.feedback-form__item {
   padding: 10px;
   width: 100%;
   color: $color-font-light-regular;
@@ -123,25 +124,13 @@
   }
 }
 
-.form__radio-icon {
+.feedback-form__rating {
   opacity: 0.5;
   transition: $transition;
   cursor: pointer;
 }
 
-.icon--smile-good {
-  @include icon-background(40px, 40px, "../../assets/images/smile-good.svg");
-}
-
-.icon--smile-maybe {
-  @include icon-background(40px, 40px, "../../assets/images/smile-maybe.svg");
-}
-
-.icon--smile-bad {
-  @include icon-background(40px, 40px, "../../assets/images/smile-bad.svg");
-}
-
-.form__check {
+.feedback-form__check {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -149,7 +138,7 @@
   cursor: pointer;
 }
 
-.form__button {
+.feedback-form__button {
   padding: 10px 40px;
   font-size: map-get($font-size, m);
   color: $color-font-light-regular;
@@ -170,14 +159,13 @@
 }
 
 
-
 // ====================== SPECIAL =========================
 
-.form__dropdown {
+.feedback-form__dropdown {
   padding: 8px;
 }
 
-.form__textarea {
+.feedback-form__textarea {
   height: 170px;
   resize: none;
 }
@@ -215,7 +203,7 @@ input[type="radio"] {
   width: 0;
   height: 0;
 
-  &:checked + .form__radio-icon {
+  &:checked + .feedback-form__rating {
     opacity: 1;
   }
 }
