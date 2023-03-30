@@ -13,7 +13,7 @@ const FeedbackForm: FunctionComponent<FeedbackFormType> = ({ addFeedback }) => {
     reset,
     getValues,
     formState: { errors },
-  } = useForm<IFeedbaclForm>();
+  } = useForm<IFeedbaclForm>({ reValidateMode: "onSubmit" });
 
   const [isConfirm, setIsConfirm] = useState<boolean>(true);
 
