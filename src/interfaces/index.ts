@@ -33,7 +33,7 @@ export interface IFeedback {
   username: string;
   continents: string;
   email: string;
-  dateOfBirth: string;
+  birthday: string;
   picture: string;
   rating: string;
   opinion: string;
@@ -44,7 +44,7 @@ export interface IFeedbaclForm {
   username: string;
   continents: string;
   email: string;
-  dateOfBirth: string;
+  birthday: string;
   picture: FileList;
   rating: string;
   opinion: string;

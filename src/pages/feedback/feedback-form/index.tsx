@@ -103,9 +103,9 @@ const FeedbackForm: FunctionComponent<FeedbackFormType> = ({ addFeedback }) => {
                 <input
                   className="feedback-form__item"
                   type="date"
-                  {...register("dateOfBirth", { required: true, pattern: patterns.dateOfBirth })}
+                  {...register("birthday", { required: true, pattern: patterns.birthday })}
                 />
-                {errors.dateOfBirth ? showError(errors.dateOfBirth.type) : <span className="empty" />}
+                {errors.birthday ? showError(errors.birthday.type) : <span className="empty" />}
               </label>
             </div>
             <div className="feedback-form__line">

@@ -5,7 +5,7 @@ import FeedbackCard from "./index";
 describe("Feedback Card component", async () => {
   const feedback = {
     continents: "europe",
-    dateOfBirth: "2023-03-10",
+    birthday: "2023-03-10",
     email: "mortysmith@gmail.test",
     isConfirm: true,
     opinion: "This is testing opinion of feedback. Get back!",

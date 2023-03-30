@@ -13,7 +13,7 @@ const FeedbackCard: FunctionComponent<FeedbackCardType> = ({ feedback }) => {
           <h4 className="feedback-card__subheader">{feedback.email}</h4>
           <div className="feedback-card__info">
             <span className="feedback-card__info-item">{feedback.continents}</span>
-            <span className="feedback-card__info-item">({feedback.dateOfBirth})</span>
+            <span className="feedback-card__info-item">({feedback.birthday})</span>
           </div>
         </div>
         <span
