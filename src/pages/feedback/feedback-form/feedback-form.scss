@@ -213,3 +213,8 @@ input[type="checkbox"] {
   height: map-get($font-size, s);
   outline: none;
 }
+
+.empty {
+  display: inline-block;
+  height: 16px;
+}

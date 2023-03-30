@@ -58,7 +58,7 @@ const FeedbackForm: FunctionComponent<FeedbackFormType> = ({ addFeedback }) => {
                     maxLength: 20,
                   })}
                 />
-                {errors.username ? showError(errors.username.type) : null}
+                {errors.username ? showError(errors.username.type) : <span className="empty" />}
               </label>
               <label className="feedback-form__label feedback-form__label--short">
                 Continents
@@ -96,7 +96,7 @@ const FeedbackForm: FunctionComponent<FeedbackFormType> = ({ addFeedback }) => {
                     maxLength: 24,
                   })}
                 />
-                {errors.email ? showError(errors.email.type) : null}
+                {errors.email ? showError(errors.email.type) : <span className="empty" />}
               </label>
               <label className="feedback-form__label feedback-form__label--short">
                 Date of birth
@@ -105,7 +105,7 @@ const FeedbackForm: FunctionComponent<FeedbackFormType> = ({ addFeedback }) => {
                   type="date"
                   {...register("dateOfBirth", { required: true, pattern: patterns.dateOfBirth })}
                 />
-                {errors.dateOfBirth ? showError(errors.dateOfBirth.type) : null}
+                {errors.dateOfBirth ? showError(errors.dateOfBirth.type) : <span className="empty" />}
               </label>
             </div>
             <div className="feedback-form__line">
@@ -117,7 +117,7 @@ const FeedbackForm: FunctionComponent<FeedbackFormType> = ({ addFeedback }) => {
                   accept="image/png, image/jpeg, image/jpg"
                   {...register("picture", { required: true })}
                 />
-                {errors.picture ? showError(errors.picture.type) : null}
+                {errors.picture ? showError(errors.picture.type) : <span className="empty" />}
               </label>
             </div>
           </div>
@@ -138,7 +138,7 @@ const FeedbackForm: FunctionComponent<FeedbackFormType> = ({ addFeedback }) => {
                   <span className="feedback-form__rating icon--smile-bad" />
                 </label>
               </div>
-              {errors.rating ? showError(errors.rating.type) : null}
+              {errors.rating ? showError(errors.rating.type) : <span className="empty" />}
             </div>
             <div className="feedback-form__line">
               <label className="feedback-form__label">
@@ -153,7 +153,7 @@ const FeedbackForm: FunctionComponent<FeedbackFormType> = ({ addFeedback }) => {
                     maxLength: 300,
                   })}
                 />
-                {errors.opinion ? showError(errors.opinion.type) : null}
+                {errors.opinion ? showError(errors.opinion.type) : <span className="empty" />}
               </label>
             </div>
           </div>
@@ -167,7 +167,7 @@ const FeedbackForm: FunctionComponent<FeedbackFormType> = ({ addFeedback }) => {
               />
               agree to send my data
             </label>
-            {errors.isConfirm ? showError(errors.isConfirm.type) : null}
+            {errors.isConfirm ? showError(errors.isConfirm.type) : <span className="empty" />}
             <button className="button feedback-form__button" type="submit" disabled={isConfirm}>
               Create feedback
             </button>
