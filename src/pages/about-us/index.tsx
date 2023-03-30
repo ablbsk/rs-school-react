@@ -32,7 +32,7 @@ const AboutUs: FunctionComponent = () => {
   ));
 
   return (
-    <div className="about-us">
+    <section className="about-us">
       <div className="wrapper about-us__wrapper">
         <h2 className="about-us__header">About Us</h2>
         <h3 className="about-us__subheader">
@@ -48,7 +48,7 @@ const AboutUs: FunctionComponent = () => {
         <ul className="about-us__list">{items}</ul>
         <span className="about-us__img" />
       </div>
-    </div>
+    </section>
   );
 };
 

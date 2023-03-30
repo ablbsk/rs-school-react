@@ -4,7 +4,7 @@ import React, { FunctionComponent } from "react";
 const NotFound: FunctionComponent = () => {
   return (
     <div className="not-found">
-      <span className="not-found__img" />
+      <img className="not-found__img" src="../../../public/not-found.png" alt="Not found" />
     </div>
   );
 };

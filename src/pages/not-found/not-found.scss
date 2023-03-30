@@ -11,8 +11,8 @@
 }
 
 .not-found__img {
-  @include icon-background(100%, 60%, "../../assets/images/not-found.png");
-  background-size: cover;
+  width: 60%;
+  object-fit: cover;
   transition: $transition;
 
   @include media-xl {

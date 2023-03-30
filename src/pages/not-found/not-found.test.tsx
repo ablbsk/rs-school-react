@@ -1,12 +1,11 @@
 import { describe, it } from "vitest";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import React from "react";
 import NotFound from "./index";
 
-describe("NotFound component", () => {
+describe("Not Found component", () => {
   it("should have image", () => {
     render(<NotFound />);
-    const { container } = render(<NotFound />);
-    expect(container.getElementsByClassName("not-found__img").length).toBe(1);
+    expect(screen.getByRole("img")).toHaveClass("not-found__img");
   });
 });
