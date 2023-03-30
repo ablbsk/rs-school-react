@@ -6,7 +6,7 @@ const AboutUs: FunctionComponent = () => {
   const modules = [
     { name: "Components", isComplete: true },
     { name: "Forms", isComplete: true },
-    { name: "Hooks", isComplete: false },
+    { name: "Hooks", isComplete: true },
     { name: "API", isComplete: false },
     { name: "Redux", isComplete: false },
     { name: "SSR/SSG", isComplete: false },
