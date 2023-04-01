@@ -1,4 +1,4 @@
-export interface IData {
+export interface IResponse {
   readonly info: {
     count: number;
     pages: number;
@@ -40,7 +40,7 @@ export interface IFeedback {
   isConfirm: boolean;
 }
 
-export interface IFeedbaclForm {
+export interface IFeedbackForm {
   username: string;
   continents: string;
   email: string;

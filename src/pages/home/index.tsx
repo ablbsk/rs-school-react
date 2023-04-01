@@ -1,35 +1,36 @@
 import "./home.scss";
-import React, { FunctionComponent, useState, useEffect, BaseSyntheticEvent } from "react";
+import React, { FunctionComponent, useState, useEffect, KeyboardEvent, useRef } from "react";
 import HomeGrid from "./home-grid";
-import data from "../../utils/data.json";
 import { ICharacter } from "../../interfaces";
+import { getCharactersByQuery } from "../../services";
 
 const Home: FunctionComponent = () => {
-  const [search, setSearch] = useState<string>(localStorage.getItem("searchHistory") || "");
-  const [characters, setCharacters] = useState<ICharacter[]>(data.results);
+  const searchRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
+  const [search, setSearch] = useState<string>(localStorage.getItem("searchHistory") || "");
+  const [characters, setCharacters] = useState<ICharacter[]>([]);
+
+  useEffect((): void => {
     if (search.length) {
       localStorage.setItem("searchHistory", search);
     }
+
+    getCharactersByQuery(search)
+      .then((data) => setCharacters(data.results))
+      .catch((error) => console.log(error)); // TODO, create notice error
   }, [search]);
 
-  const filterCards = (): void => {
-    if (search.length) {
-      const result = characters.filter((item) => item.name.toLowerCase().includes(search));
-      setCharacters(result);
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>): void => {
+    const { value } = e.target as HTMLInputElement;
+
+    if (e.key === "Enter") {
+      setSearch(value);
     }
   };
 
-  const updateSearchValue = (e: BaseSyntheticEvent): void => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    if (e.nativeEvent.inputType === undefined) {
-      setSearch("");
-      setCharacters(data.results);
-    } else {
-      setSearch(e.target.value);
-    }
+  const arrowClick = (): void => {
+    const { value } = searchRef.current as HTMLInputElement;
+    setSearch(value);
   };
 
   return (
@@ -42,9 +43,10 @@ const Home: FunctionComponent = () => {
             className="search__input"
             type="search"
             placeholder="What do you want to find?"
-            onChange={(e: BaseSyntheticEvent) => updateSearchValue(e)}
+            ref={searchRef}
+            onKeyDown={handleKeyDown}
           />
-          <button className="search__button" type="button" onClick={filterCards}>
+          <button className="search__button" type="button" onClick={arrowClick}>
             <span className="search__icon search__icon--arrow" />
           </button>
         </div>

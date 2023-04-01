@@ -2,7 +2,7 @@ import "./feedback-form.scss";
 import React, { FunctionComponent, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FeedbackFormType } from "../../../types";
-import { IFeedbaclForm } from "../../../interfaces";
+import { IFeedbackForm } from "../../../interfaces";
 import { errorMessages, patterns } from "../../../utils/constants";
 import InlineError from "../inline-error";
 
@@ -13,11 +13,11 @@ const FeedbackForm: FunctionComponent<FeedbackFormType> = ({ addFeedback }) => {
     reset,
     getValues,
     formState: { errors },
-  } = useForm<IFeedbaclForm>({ reValidateMode: "onSubmit" });
+  } = useForm<IFeedbackForm>({ reValidateMode: "onSubmit" });
 
   const [isConfirm, setIsConfirm] = useState<boolean>(true);
 
-  const onSubmit = (data: IFeedbaclForm) => {
+  const onSubmit = (data: IFeedbackForm) => {
     addFeedback({ ...data, picture: window.URL.createObjectURL(data.picture[0]) });
     reset();
   };
