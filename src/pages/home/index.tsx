@@ -26,6 +26,7 @@ const Home: FunctionComponent = () => {
     // @ts-ignore
     if (e.nativeEvent.inputType === undefined) {
       setSearch("");
+      localStorage.setItem("searchHistory", "");
       setCharacters(data.results);
     } else {
       setSearch(e.target.value);
@@ -41,6 +42,7 @@ const Home: FunctionComponent = () => {
           <input
             className="search__input"
             type="search"
+            value={search}
             placeholder="What do you want to find?"
             onChange={(e: BaseSyntheticEvent) => updateSearchValue(e)}
           />
