@@ -1,6 +1,7 @@
 import "./home.scss";
 import React, { FunctionComponent, useState, useEffect, KeyboardEvent, useRef } from "react";
 import HomeGrid from "./home-grid";
+import Spinner from "../../components/spinner";
 import { ICharacter } from "../../interfaces";
 import { getCharactersByQuery } from "../../services";
 
@@ -9,15 +10,19 @@ const Home: FunctionComponent = () => {
 
   const [search, setSearch] = useState<string>(localStorage.getItem("searchHistory") || "");
   const [characters, setCharacters] = useState<ICharacter[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect((): void => {
     if (search.length) {
       localStorage.setItem("searchHistory", search);
     }
 
-    getCharactersByQuery(search)
-      .then((data) => setCharacters(data.results))
-      .catch((error) => console.log(error)); // TODO, create notice error
+    setLoading(true);
+    getCharactersByQuery(search).then((data) => {
+      const result = Object.hasOwn(data, "results") ? data.results : [];
+      setCharacters(result);
+      setLoading(false);
+    });
   }, [search]);
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>): void => {
@@ -43,6 +48,7 @@ const Home: FunctionComponent = () => {
             className="search__input"
             type="search"
             placeholder="What do you want to find?"
+            value={search} // TODO поправить, чтобы значение можно было менять
             ref={searchRef}
             onKeyDown={handleKeyDown}
           />
@@ -51,7 +57,7 @@ const Home: FunctionComponent = () => {
           </button>
         </div>
       </div>
-      <HomeGrid elements={characters} />
+      {loading ? <Spinner /> : <HomeGrid elements={characters} />}
     </>
   );
 };
