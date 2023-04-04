@@ -1,6 +1,7 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import matchers from '@testing-library/jest-dom/matchers';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { expect } from 'vitest';
+import { expect, afterEach } from "vitest";
+import { cleanup } from "@testing-library/react";
+import matchers from "@testing-library/jest-dom/matchers";
 
 expect.extend(matchers);
+
+afterEach(() => cleanup());

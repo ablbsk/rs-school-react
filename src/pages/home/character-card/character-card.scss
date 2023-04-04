@@ -1,0 +1,161 @@
+@import "../../../styles/constants";
+@import "../../../styles/mixins";
+
+.character-card {
+  width: calc(50% - 15px);
+  font-size: map-get($font-size, s);
+  background-color: $color-card-background;
+  border-radius: $border-radius-lg;
+  transition: $transition;
+
+  @include media-lg {
+    font-size: map-get($font-size, xs);
+  }
+
+  @include media-md {
+    width: 100%;
+    font-size: map-get($font-size, m);
+  }
+
+  @include media-sm {
+    font-size: map-get($font-size, xs);
+  }
+
+  @include media-2sm {
+    font-size: map-get($font-size, s);
+  }
+}
+
+.character-card__wrapper {
+  margin: 10px;
+  display: flex;
+  gap: 20px;
+
+  @include media-2sm {
+    flex-direction: column;
+  }
+}
+
+.character-card__column {
+  &--img {
+    @include media-sm {
+      vertical-align: middle;
+    }
+
+    @include media-2sm {
+      text-align: center;
+    }
+  }
+}
+
+.character-card__img {
+  height: 200px;
+  width: auto;
+  border-radius: $border-radius-md;
+  transition: $transition;
+
+  @include media-lg {
+    height: 125px;
+  }
+
+  @include media-md {
+    height: 225px;
+  }
+
+  @include media-sm {
+    height: 125px;
+  }
+
+  @include media-2sm {
+    height: 200px;
+  }
+}
+
+.character-card__header {
+  font-size: map-get($font-size, l);
+
+  @include media-lg {
+    font-size: map-get($font-size, m);
+  }
+
+  @include media-md {
+    font-size: map-get($font-size, xl);
+  }
+
+  @include media-sm {
+    font-size: map-get($font-size, m);
+  }
+}
+
+.character-card__tags {
+  margin: 20px 0;
+  display: flex;
+  gap: 10px;
+  transition: $transition;
+
+  @include media-lg {
+    margin: 10px 0;
+  }
+
+  @include media-md {
+    margin: 20px 0;
+  }
+}
+
+.character-card__tag {
+  padding: 3px 5px;
+  background-color: $color-tag-default;
+  border: 1px solid $color-tag-default;
+  border-radius: $border-radius-md;
+
+  &--male {
+    background-color: $color-tag-male;
+    border-color: $color-tag-male;
+  }
+
+  &--female {
+    background-color: $color-tag-female;
+    border-color: $color-tag-female;
+  }
+
+  &--genderless {
+    background-color: $color-tag-female;
+    border-color: $color-tag-female;
+  }
+
+  &--alive {
+    background-color: $color-tag-alive;
+    border-color: $color-tag-alive;
+  }
+
+  &--dead {
+    background-color: $color-tag-dead;
+    border-color: $color-tag-dead;
+  }
+}
+
+.character-card__description {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  @include media-sm {
+    gap: 6px;
+  }
+
+  @include media-2sm {
+    gap: 12px;
+  }
+}
+
+.character-card__text {
+  margin: 0;
+  padding: 0;
+}
+
+.character-card__title {
+  padding-right: 10px;
+  color: $color-tag-default;
+  font-weight: 500;
+  text-transform: uppercase;
+}
