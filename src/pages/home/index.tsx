@@ -1,5 +1,12 @@
 import "./home.scss";
-import React, { FunctionComponent, useState, useEffect, KeyboardEvent, useRef } from "react";
+import React, {
+  FunctionComponent,
+  useState,
+  useEffect,
+  KeyboardEvent,
+  useRef,
+  BaseSyntheticEvent,
+} from "react";
 import HomeGrid from "./home-grid";
 import Spinner from "../../components/spinner";
 import { ICharacter } from "../../interfaces";
@@ -13,17 +20,27 @@ const Home: FunctionComponent = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect((): void => {
-    if (search.length) {
-      localStorage.setItem("searchHistory", search);
-    }
-
     setLoading(true);
+
     getCharactersByQuery(search).then((data) => {
       const result = Object.hasOwn(data, "results") ? data.results : [];
       setCharacters(result);
       setLoading(false);
     });
+
+    localStorage.setItem("searchHistory", search);
   }, [search]);
+
+  const updateSearchValue = (e: BaseSyntheticEvent): void => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    if (e.nativeEvent.inputType === undefined) {
+      setSearch("");
+      localStorage.setItem("searchHistory", "");
+    } else {
+      setSearch(e.target.value);
+    }
+  };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>): void => {
     const { value } = e.target as HTMLInputElement;
@@ -47,10 +64,11 @@ const Home: FunctionComponent = () => {
           <input
             className="search__input"
             type="search"
+            value={search}
             placeholder="What do you want to find?"
-            value={search} // TODO поправить, чтобы значение можно было менять
             ref={searchRef}
             onKeyDown={handleKeyDown}
+            onChange={(e: BaseSyntheticEvent) => updateSearchValue(e)}
           />
           <button className="search__button" type="button" onClick={arrowClick}>
             <span className="search__icon search__icon--arrow" />
