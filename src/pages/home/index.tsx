@@ -18,24 +18,29 @@ const Home: FunctionComponent = () => {
   const [search, setSearch] = useState<string>(localStorage.getItem("searchHistory") || "");
   const [characters, setCharacters] = useState<ICharacter[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [indicator, setIndicator] = useState<boolean>(true);
 
   useEffect((): void => {
-    setLoading(true);
+    if (indicator) {
+      setLoading(true);
+      setIndicator(false);
 
-    getCharactersByQuery(search).then((data) => {
-      const result = Object.hasOwn(data, "results") ? data.results : [];
-      setCharacters(result);
-      setLoading(false);
-    });
+      getCharactersByQuery(search).then((data) => {
+        const result = Object.hasOwn(data, "results") ? data.results : [];
+        setCharacters(result);
+        setLoading(false);
+      });
 
-    localStorage.setItem("searchHistory", search);
-  }, [search]);
+      localStorage.setItem("searchHistory", search);
+    }
+  }, [search, indicator]);
 
   const updateSearchValue = (e: BaseSyntheticEvent): void => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     if (e.nativeEvent.inputType === undefined) {
       setSearch("");
+      setIndicator(true);
       localStorage.setItem("searchHistory", "");
     } else {
       setSearch(e.target.value);
@@ -47,12 +52,14 @@ const Home: FunctionComponent = () => {
 
     if (e.key === "Enter") {
       setSearch(value);
+      setIndicator(true);
     }
   };
 
   const arrowClick = (): void => {
     const { value } = searchRef.current as HTMLInputElement;
     setSearch(value);
+    setIndicator(true);
   };
 
   return (
