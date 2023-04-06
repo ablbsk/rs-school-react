@@ -6,6 +6,11 @@ export type HomeGridType = {
 
 export type CharacterCardType = {
   character: ICharacter;
+  openModal: (isShow: boolean, character: ICharacter) => void;
+};
+
+export type CharacterModalType = {
+  character: ICharacter;
 };
 
 export type FeedbackCardType = {

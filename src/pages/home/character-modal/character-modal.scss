@@ -1,0 +1,11 @@
+.shadow {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 50;
+}
+
+.modal__header {
+  color: red;
+}

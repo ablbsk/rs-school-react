@@ -3,7 +3,7 @@ import React, { FunctionComponent } from "react";
 import classNames from "classnames";
 import { CharacterCardType } from "../../../types";
 
-const CharacterCard: FunctionComponent<CharacterCardType> = ({ character }) => {
+const CharacterCard: FunctionComponent<CharacterCardType> = ({ character, openModal }) => {
   return (
     <article className="character-card">
       <div className="character-card__wrapper">
@@ -11,7 +11,13 @@ const CharacterCard: FunctionComponent<CharacterCardType> = ({ character }) => {
           <img className="character-card__img" src={character.image} alt={character.name} />
         </div>
         <div className="character-card__column">
-          <h4 className="character-card__header">{character.name}</h4>
+          <h4
+            className="character-card__header"
+            onClick={() => openModal(true, character)}
+            aria-hidden="true"
+          >
+            {character.name}
+          </h4>
           <div className="character-card__tags">
             <span
               className={classNames(

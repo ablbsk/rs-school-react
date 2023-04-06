@@ -73,6 +73,12 @@
 
 .character-card__header {
   font-size: map-get($font-size, l);
+  cursor: pointer;
+  transition: $transition;
+
+  &:hover {
+    color: $color-accent-text;
+  }
 
   @include media-lg {
     font-size: map-get($font-size, m);
