@@ -4,11 +4,9 @@ import { CharacterModalType } from "../../../types";
 
 const CharacterModal: FunctionComponent<CharacterModalType> = ({ character }) => {
   return (
-    <div className="shadow">
-      <div className="center">
-        <div className="modal">
-          <h2 className="modal__header">{character.name}</h2>
-        </div>
+    <div className="modal">
+      <div className="modal__wrapper">
+        <h2 className="modal__header">{character.name}</h2>
       </div>
     </div>
   );

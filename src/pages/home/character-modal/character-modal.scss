@@ -1,9 +1,19 @@
-.shadow {
+@import "../../../styles/constants";
+@import "../../../styles/mixins";
+
+.modal {
+  width: 600px;
+  background: white;
+  border-radius: $border-radius-lg;
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%,-50%);
-  z-index: 50;
+  z-index: 75;
+}
+
+.modal__wrapper {
+  padding: 30px;
 }
 
 .modal__header {

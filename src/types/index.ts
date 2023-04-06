@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { ICharacter, IFeedback } from "../interfaces";
 
 export type HomeGridType = {
@@ -19,6 +20,10 @@ export type FeedbackCardType = {
 
 export type FeedbackFormType = {
   addFeedback: (feedback: IFeedback) => void;
+};
+
+export type ShadowType = {
+  closeModal: () => void;
 };
 
 export type InlineErrorType = {
