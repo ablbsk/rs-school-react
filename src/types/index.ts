@@ -22,6 +22,11 @@ export type FeedbackFormType = {
   addFeedback: (feedback: IFeedback) => void;
 };
 
+export type SearchType = {
+  setCharacters: (data: ICharacter[]) => void;
+  setLoading: (value: boolean) => void;
+};
+
 export type ShadowType = {
   closeModal: () => void;
 };
