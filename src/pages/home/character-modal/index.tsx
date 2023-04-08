@@ -88,4 +88,3 @@ const CharacterModal: FunctionComponent<CharacterModalType> = ({
 };
 
 export default CharacterModal;
-

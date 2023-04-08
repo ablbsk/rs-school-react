@@ -29,7 +29,7 @@ const Search: FunctionComponent<SearchType> = ({ setCharacters, setLoading }) =>
 
       localStorage.setItem("searchHistory", search);
     }
-  }, [search, indicator]);
+  }, [search, indicator, setLoading, setCharacters]);
 
   const updateSearchValue = (e: BaseSyntheticEvent): void => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
