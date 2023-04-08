@@ -1,5 +1,4 @@
-import { ReactNode } from "react";
-import { ICharacter, IFeedback } from "../interfaces";
+import { ICharacter, ICharacterWithEpisodes, IFeedback } from "../interfaces";
 
 export type HomeGridType = {
   elements: ICharacter[];
@@ -7,11 +6,12 @@ export type HomeGridType = {
 
 export type CharacterCardType = {
   character: ICharacter;
-  openModal: (isShow: boolean, character: ICharacter) => void;
+  openModal: (isShow: boolean, id: number) => void;
 };
 
 export type CharacterModalType = {
-  character: ICharacter;
+  characterWithEpisodes: ICharacterWithEpisodes;
+  closeModal: () => void;
 };
 
 export type FeedbackCardType = {

@@ -32,3 +32,36 @@ body {
 .icon--smile-bad {
   @include icon-background(40px, 40px, "../assets/images/smile-bad.svg");
 }
+
+.tag {
+  padding: 5px 10px;
+  background-color: $color-tag-default;
+  color: $color-font-light-regular;
+  border: 1px solid $color-tag-default;
+  border-radius: $border-radius-md;
+
+  &--male {
+    background-color: $color-tag-male;
+    border-color: $color-tag-male;
+  }
+
+  &--female {
+    background-color: $color-tag-female;
+    border-color: $color-tag-female;
+  }
+
+  &--genderless {
+    background-color: $color-tag-female;
+    border-color: $color-tag-female;
+  }
+
+  &--alive {
+    background-color: $color-tag-alive;
+    border-color: $color-tag-alive;
+  }
+
+  &--dead {
+    background-color: $color-tag-dead;
+    border-color: $color-tag-dead;
+  }
+}

@@ -1,21 +1,96 @@
 @import "../../../styles/constants";
 @import "../../../styles/mixins";
 
-.modal {
+.character-modal {
   width: 600px;
   background: white;
   border-radius: $border-radius-lg;
   position: fixed;
   left: 50%;
   top: 50%;
+  font-size: map-get($font-size, m);
+  color: $color-font-dark-regular;
   transform: translate(-50%,-50%);
   z-index: 75;
 }
 
-.modal__wrapper {
-  padding: 30px;
+.character-modal__header {
+  padding: 15px 0;
+  text-align: center;
+  color: $color-font-light-regular;
+  background: $background-image-accent;
+  font-size: map-get($font-size, xl);
+  border-radius: $border-radius-lg $border-radius-lg 0 0;
 }
 
-.modal__header {
-  color: red;
+.character-modal__close {
+  margin: 10px auto;
+  padding: 4px 8px;
+  display: inline-block;
+  position: absolute;
+  top: 7.5px;
+  right: 15px;
+  font-size: map-get($font-size, s);
+  font-weight: 700;
+  color: $color-font-light-regular;
+  border: 3px solid $color-font-light-regular;
+  border-radius: 50%;
+  transition: $transition;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-accent-text;
+    border-color: $color-accent-text;
+  }
+}
+
+.character-modal__content {
+  padding: 30px 15px;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.character-modal__ceil {
+  width: calc(50% - 15px);
+}
+
+.character-modal__tags {
+  margin-top: 15px;
+  display: flex;
+  gap: 7.5px;
+}
+
+// ====================== ELEMENT ========================
+
+.character-modal__img {
+  height: 100%;
+  width: 100%;
+  border-radius: $border-radius-md;
+  object-fit: contain;
+}
+
+.character-modal__list {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+}
+
+.character-modal__item {
+  font-size: 2rem;
+}
+
+.character-modal__title {
+  padding-right: 10px;
+  color: $color-tag-default;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.character-modal__subheader {
+  font-size: map-get($font-size, l);
+  font-weight: 500;
 }

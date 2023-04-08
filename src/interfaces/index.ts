@@ -1,4 +1,4 @@
-export interface IResponse {
+export interface ICharactersResponse {
   readonly info: {
     count: number;
     pages: number;
@@ -27,6 +27,17 @@ export interface ICharacter {
   episode: string[];
   url: string;
   created: string;
+}
+
+export interface ICharacterWithEpisodes {
+  character: ICharacter;
+  episodes: ICharacterEpisode[];
+}
+
+export interface ICharacterEpisode {
+  episode: string;
+  name: string;
+  airDate: string;
 }
 
 export interface IFeedback {
