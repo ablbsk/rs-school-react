@@ -17,7 +17,7 @@ const Home: FunctionComponent = () => {
 
   const [search, setSearch] = useState<string>(localStorage.getItem("searchHistory") || "");
   const [characters, setCharacters] = useState<ICharacter[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [indicator, setIndicator] = useState<boolean>(true);
 
   useEffect((): void => {
@@ -82,7 +82,7 @@ const Home: FunctionComponent = () => {
           </button>
         </div>
       </div>
-      {loading ? <Spinner /> : <HomeGrid elements={characters} />}
+      {loading ? <Spinner isAbsolute={false} /> : <HomeGrid elements={characters} />}
     </>
   );
 };

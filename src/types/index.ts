@@ -26,6 +26,10 @@ export type ShadowType = {
   closeModal: () => void;
 };
 
+export type SpinnerType = {
+  isAbsolute: boolean;
+};
+
 export type InlineErrorType = {
   message: string;
 };
