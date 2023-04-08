@@ -40,6 +40,16 @@ export interface ICharacterEpisode {
   airDate: string;
 }
 
+export interface IEpisode {
+  id: number;
+  name: string;
+  air_date: string;
+  episode: string;
+  characters: string[];
+  url: string;
+  created: string;
+}
+
 export interface IFeedback {
   username: string;
   continents: string;

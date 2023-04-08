@@ -1,7 +1,7 @@
 import "./home-grid.scss";
 import React, { FunctionComponent, useEffect, useState } from "react";
 import { HomeGridType } from "../../../types";
-import { ICharacterWithEpisodes } from "../../../interfaces";
+import { ICharacterWithEpisodes, IEpisode } from "../../../interfaces";
 import CharacterCard from "../character-card";
 import CharacterModal from "../character-modal";
 import Shadow from "../../../components/shadow";
@@ -16,39 +16,30 @@ const HomeGrid: FunctionComponent<HomeGridType> = ({ elements }) => {
 
   useEffect((): void => {
     (async () => {
+      const getIndex = (episode: string): number => {
+        return parseInt(episode.slice(episode.lastIndexOf("/") + 1), 10);
+      };
+
+      const filterData = (obj: IEpisode) => {
+        return { episode: obj.episode, name: obj.name, airDate: obj.air_date };
+      };
+
       setLoading(true);
 
       const characterData = await getCharacterById(id);
-      const firstEpisode = characterData.episode[0];
-      const firstSeenInId = parseInt(firstEpisode.slice(firstEpisode.lastIndexOf("/") + 1), 10);
-
-      const firstSeenIn = await getEpisodeById(firstSeenInId);
+      const firstSeenIn = await getEpisodeById(getIndex(characterData.episode[0]));
 
       if (characterData.episode.length > 1) {
-        const lastEpisode = characterData.episode[characterData.episode.length - 1];
-        const lastSeenInId = parseInt(lastEpisode.slice(lastEpisode.lastIndexOf("/") + 1), 10);
+        const lastSeenInId = getIndex(characterData.episode[characterData.episode.length - 1]);
         const lastSeenIn = await getEpisodeById(lastSeenInId);
         setCharacter({
           character: characterData,
-          episodes: [
-            {
-              episode: firstSeenIn.episode,
-              name: firstSeenIn.name,
-              airDate: firstSeenIn.air_date,
-            },
-            { episode: lastSeenIn.episode, name: lastSeenIn.name, airDate: lastSeenIn.air_date },
-          ],
+          episodes: [filterData(firstSeenIn), filterData(lastSeenIn)],
         });
       } else {
         setCharacter({
           character: characterData,
-          episodes: [
-            {
-              episode: firstSeenIn.episode,
-              name: firstSeenIn.name,
-              airDate: firstSeenIn.air_date,
-            },
-          ],
+          episodes: [filterData(firstSeenIn)],
         });
       }
 
@@ -56,11 +47,11 @@ const HomeGrid: FunctionComponent<HomeGridType> = ({ elements }) => {
     })();
   }, [id]);
 
-  useEffect((): void => {
-    if (!showModal) {
-      setCharacter(null);
-    }
-  }, [showModal]);
+  // useEffect((): void => {
+  //   if (!showModal) {
+  //     setCharacter(null);
+  //   }
+  // }, [showModal]);
 
   const cardsElement = elements.map((item) => (
     <CharacterCard

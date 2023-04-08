@@ -1,4 +1,4 @@
-import { ICharactersResponse, ICharacter } from "../interfaces";
+import { ICharactersResponse, ICharacter, IEpisode } from "../interfaces";
 
 const apiBase = "https://rickandmortyapi.com/api/";
 
@@ -20,7 +20,7 @@ export const getCharacterById = async (id: number): Promise<ICharacter> => {
   }
 };
 
-export const getEpisodeById = async (id: number): Promise<any> => {
+export const getEpisodeById = async (id: number): Promise<IEpisode> => {
   try {
     const response: Response = await fetch(`${apiBase}episode/${id}`);
     return await response.json();
