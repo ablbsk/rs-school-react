@@ -11,11 +11,17 @@
   font-size: map-get($font-size, m);
   color: $color-font-dark-regular;
   transform: translate(-50%,-50%);
+  transition: $transition;
   z-index: 75;
+
+  @include media-md {
+    width: calc(100% - 60px);
+    min-width: 360px;
+  }
 }
 
 .character-modal__header {
-  padding: 15px 0;
+  padding: 15px 45px;
   text-align: center;
   color: $color-font-light-regular;
   background: $background-image-accent;
@@ -54,6 +60,11 @@
 
 .character-modal__ceil {
   width: calc(50% - 15px);
+  transition: $transition;
+
+  @include media-sm {
+    width: 100%;
+  }
 }
 
 .character-modal__tags {
@@ -69,6 +80,13 @@
   width: 100%;
   border-radius: $border-radius-md;
   object-fit: contain;
+
+  @include media-sm {
+    margin: 0 auto;
+    height: 200px;
+    width: auto;
+    display: block;
+  }
 }
 
 .character-modal__list {

@@ -10,11 +10,12 @@ const CharacterModal: FunctionComponent<CharacterModalType> = ({
   const { character, episodes } = characterWithEpisodes;
 
   const episodesBlocks = episodes.map((item, index) => {
-    const header = !index ? "First" : "Last";
+    let header = !index ? "First" : "Last";
+    header = episodes.length < 2 ? "First/Last" : header;
 
     return (
       <div key={header} className="character-modal__ceil">
-        <h3 className="character-modal__subheader">{header} seen in</h3>
+        <h3 className="character-modal__subheader">{header} seen in:</h3>
         <ul className="character-modal__list">
           <li className="character-modal__item">
             <span className="character-modal__title">Episode:</span>
@@ -87,3 +88,4 @@ const CharacterModal: FunctionComponent<CharacterModalType> = ({
 };
 
 export default CharacterModal;
+
