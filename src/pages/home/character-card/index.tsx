@@ -13,7 +13,7 @@ const CharacterCard: FunctionComponent<CharacterCardType> = ({ character, openMo
         <div className="character-card__column">
           <h4
             className="character-card__header"
-            onClick={() => openModal(true, character.id)}
+            onClick={() => openModal(character.id)}
             aria-hidden="true"
           >
             {character.name}

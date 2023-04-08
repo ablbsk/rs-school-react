@@ -10,7 +10,7 @@ import Spinner from "../../../components/spinner";
 
 const HomeGrid: FunctionComponent<HomeGridType> = ({ elements }) => {
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [id, setId] = useState<number>(1);
+  const [id, setId] = useState<number | null>(null);
   const [character, setCharacter] = useState<ICharacterWithEpisodes | null>();
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -24,43 +24,38 @@ const HomeGrid: FunctionComponent<HomeGridType> = ({ elements }) => {
         return { episode: obj.episode, name: obj.name, airDate: obj.air_date };
       };
 
-      setLoading(true);
+      if (id) {
+        setLoading(true);
+        setShowModal(true);
 
-      const characterData = await getCharacterById(id);
-      const firstSeenIn = await getEpisodeById(getIndex(characterData.episode[0]));
+        const characterData = await getCharacterById(id);
+        const firstSeenIn = await getEpisodeById(getIndex(characterData.episode[0]));
 
-      if (characterData.episode.length > 1) {
-        const lastSeenInId = getIndex(characterData.episode[characterData.episode.length - 1]);
-        const lastSeenIn = await getEpisodeById(lastSeenInId);
-        setCharacter({
-          character: characterData,
-          episodes: [filterData(firstSeenIn), filterData(lastSeenIn)],
-        });
-      } else {
-        setCharacter({
-          character: characterData,
-          episodes: [filterData(firstSeenIn)],
-        });
+        if (characterData.episode.length > 1) {
+          const lastSeenInId = getIndex(characterData.episode[characterData.episode.length - 1]);
+          const lastSeenIn = await getEpisodeById(lastSeenInId);
+          setCharacter({
+            character: characterData,
+            episodes: [filterData(firstSeenIn), filterData(lastSeenIn)],
+          });
+        } else {
+          setCharacter({
+            character: characterData,
+            episodes: [filterData(firstSeenIn)],
+          });
+        }
+
+        setLoading(false);
+        setId(null);
       }
-
-      setLoading(false);
     })();
   }, [id]);
-
-  // useEffect((): void => {
-  //   if (!showModal) {
-  //     setCharacter(null);
-  //   }
-  // }, [showModal]);
 
   const cardsElement = elements.map((item) => (
     <CharacterCard
       character={item}
       key={`${item.name}-${item.id}`}
-      openModal={(isShow, characterId) => {
-        setId(characterId);
-        setShowModal(isShow);
-      }}
+      openModal={(characterId) => setId(characterId)}
     />
   ));
 
