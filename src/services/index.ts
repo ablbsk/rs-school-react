@@ -1,6 +1,6 @@
 import { ICharactersResponse, ICharacter, IEpisode } from "../interfaces";
 
-const apiBase = "https://rickandmortyapi.com/api/";
+export const apiBase = "https://rickandmortyapi.com/api/";
 
 export const getCharactersByQuery = async (query: string): Promise<ICharactersResponse> => {
   try {

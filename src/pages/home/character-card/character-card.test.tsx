@@ -2,19 +2,49 @@ import { describe, it } from "vitest";
 import { render, screen } from "@testing-library/react";
 import React from "react";
 import CharacterCard from "./index";
-import data from "../../../utils/data.json";
+
+const data = {
+  info: {
+    count: 826,
+    pages: 42,
+    next: "https://rickandmortyapi.com/api/character?page=7",
+    prev: "https://rickandmortyapi.com/api/character?page=5",
+  },
+  results: [
+    {
+      id: 101,
+      name: "E. Coli",
+      status: "Dead",
+      species: "Disease",
+      type: "",
+      gender: "unknown",
+      origin: {
+        name: "Anatomy Park",
+        url: "https://rickandmortyapi.com/api/location/5",
+      },
+      location: {
+        name: "Anatomy Park",
+        url: "https://rickandmortyapi.com/api/location/5",
+      },
+      image: "https://rickandmortyapi.com/api/character/avatar/101.jpeg",
+      episode: ["https://rickandmortyapi.com/api/episode/3"],
+      url: "https://rickandmortyapi.com/api/character/101",
+      created: "2017-12-01T12:03:31.433Z",
+    },
+  ],
+};
 
 describe("Card component", () => {
   const character = data.results[0];
 
-  beforeEach(() => render(<CharacterCard character={character} />));
+  beforeEach(() => render(<CharacterCard character={character} openModal={() => false} />));
 
   it("should have an image", () => {
     expect(screen.getByRole("img")).toHaveAttribute("src", character.image);
   });
 
   it("should have a name", () => {
-    expect(screen.getByRole("heading", { level: 4 })).toHaveTextContent(character.name);
+    expect(screen.getByText(character.name)).toBeInTheDocument();
   });
 
   it("should have a gender", () => {
