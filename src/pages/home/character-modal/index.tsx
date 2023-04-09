@@ -11,7 +11,7 @@ const CharacterModal: FunctionComponent<CharacterModalType> = ({
 
   const episodesBlocks = episodes.map((item, index) => {
     let header = !index ? "First" : "Last";
-    header = episodes.length < 2 ? "First/Last" : header;
+    header = episodes.length < 2 ? "First & Last" : header;
 
     return (
       <div key={header} className="character-modal__ceil">

@@ -24,29 +24,33 @@ const HomeGrid: FunctionComponent<HomeGridType> = ({ elements }) => {
         return { episode: obj.episode, name: obj.name, airDate: obj.air_date };
       };
 
-      if (id) {
-        setLoading(true);
-        setShowModal(true);
+      try {
+        if (id) {
+          setLoading(true);
+          setShowModal(true);
 
-        const characterData = await getCharacterById(id);
-        const firstSeenIn = await getEpisodeById(getIndex(characterData.episode[0]));
+          const characterData = await getCharacterById(id);
+          const firstSeenIn = await getEpisodeById(getIndex(characterData.episode[0]));
 
-        if (characterData.episode.length > 1) {
-          const lastSeenInId = getIndex(characterData.episode[characterData.episode.length - 1]);
-          const lastSeenIn = await getEpisodeById(lastSeenInId);
-          setCharacter({
-            character: characterData,
-            episodes: [filterData(firstSeenIn), filterData(lastSeenIn)],
-          });
-        } else {
-          setCharacter({
-            character: characterData,
-            episodes: [filterData(firstSeenIn)],
-          });
+          if (characterData.episode.length > 1) {
+            const lastSeenInId = getIndex(characterData.episode[characterData.episode.length - 1]);
+            const lastSeenIn = await getEpisodeById(lastSeenInId);
+            setCharacter({
+              character: characterData,
+              episodes: [filterData(firstSeenIn), filterData(lastSeenIn)],
+            });
+          } else {
+            setCharacter({
+              character: characterData,
+              episodes: [filterData(firstSeenIn)],
+            });
+          }
+
+          setLoading(false);
+          setId(null);
         }
-
+      } catch {
         setLoading(false);
-        setId(null);
       }
     })();
   }, [id]);
