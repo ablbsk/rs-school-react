@@ -9,7 +9,7 @@ const Feedback: FunctionComponent = () => {
   const [feedback, setFeedback] = useState<IFeedback[]>([]);
   const [isNoticeShow, setIsNoticeShow] = useState<boolean>(false);
 
-  useEffect(() => {
+  useEffect((): void => {
     if (feedback.length !== 0) {
       setIsNoticeShow(true);
       setTimeout(() => setIsNoticeShow(false), 2000);

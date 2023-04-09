@@ -17,18 +17,22 @@ const Search: FunctionComponent<SearchType> = ({ setCharacters, setLoading }) =>
   const [indicator, setIndicator] = useState<boolean>(true);
 
   useEffect((): void => {
-    if (indicator) {
-      setLoading(true);
-      setIndicator(false);
+    (async () => {
+      try {
+        if (indicator) {
+          setLoading(true);
+          setIndicator(false);
 
-      getCharactersByQuery(search).then((data) => {
-        const result = Object.hasOwn(data, "results") ? data.results : [];
-        setCharacters(result);
+          const charactersData = await getCharactersByQuery(search);
+          const result = Object.hasOwn(charactersData, "results") ? charactersData.results : [];
+          setCharacters(result);
+          setLoading(false);
+          localStorage.setItem("searchHistory", search);
+        }
+      } catch {
         setLoading(false);
-      });
-
-      localStorage.setItem("searchHistory", search);
-    }
+      }
+    })();
   }, [search, indicator, setLoading, setCharacters]);
 
   const updateSearchValue = (e: BaseSyntheticEvent): void => {
