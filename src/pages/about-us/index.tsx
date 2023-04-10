@@ -1,20 +1,12 @@
 import "./about-us.scss";
 import React, { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
+import { courseModules } from "../../utils/constants";
 
 const AboutUs: FunctionComponent = () => {
-  const modules = [
-    { name: "Components", isComplete: true },
-    { name: "Forms", isComplete: true },
-    { name: "Hooks", isComplete: true },
-    { name: "API", isComplete: false },
-    { name: "Redux", isComplete: false },
-    { name: "SSR/SSG", isComplete: false },
-  ];
-
-  const items = modules.map((item, i) => (
-    <li key={modules[i].name} className="about-us__item">
-      {modules[i].isComplete ? (
+  const items = courseModules.map((item, i) => (
+    <li key={courseModules[i].name} className="about-us__item">
+      {courseModules[i].isComplete ? (
         <span className="about-us__status about-us__status--complete">complete</span>
       ) : (
         <span className="about-us__status about-us__status--in-progress">in progress</span>
@@ -26,7 +18,7 @@ const AboutUs: FunctionComponent = () => {
           i + 1
         }`}
       >
-        React. {modules[i].name}
+        React. {courseModules[i].name}
       </Link>
     </li>
   ));

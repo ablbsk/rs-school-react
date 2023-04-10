@@ -12,3 +12,18 @@ export const errorMessages = {
   long: "* Value of this field too long",
   wrong: "* Wrong value",
 };
+
+export const courseModules = [
+  { name: "Components", isComplete: true },
+  { name: "Forms", isComplete: true },
+  { name: "Hooks", isComplete: true },
+  { name: "API", isComplete: false },
+  { name: "Redux", isComplete: false },
+  { name: "SSR/SSG", isComplete: false },
+];
+
+export const globalRoutes = [
+  { path: "/", title: "Home" },
+  { path: "/about-us", title: "About us" },
+  { path: "/feedback", title: "Feedback" },
+];
