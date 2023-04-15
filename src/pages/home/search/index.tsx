@@ -1,39 +1,9 @@
 import "./search.scss";
-import React, {
-  BaseSyntheticEvent,
-  FunctionComponent,
-  KeyboardEvent,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import { getCharactersByQuery } from "../../../services";
+import React, { BaseSyntheticEvent, FunctionComponent, KeyboardEvent, useRef } from "react";
 import { SearchType } from "../../../types";
 
-const Search: FunctionComponent<SearchType> = ({ setCharacters, setLoading }) => {
+const Search: FunctionComponent<SearchType> = ({ search, setSearch, setIndicator }) => {
   const searchRef = useRef<HTMLInputElement>(null);
-
-  const [search, setSearch] = useState<string>(localStorage.getItem("searchHistory") || "");
-  const [indicator, setIndicator] = useState<boolean>(true);
-
-  useEffect((): void => {
-    (async () => {
-      try {
-        if (indicator) {
-          setLoading(true);
-          setIndicator(false);
-
-          const charactersData = await getCharactersByQuery(search);
-          const result = Object.hasOwn(charactersData, "results") ? charactersData.results : [];
-          setCharacters(result);
-          setLoading(false);
-          localStorage.setItem("searchHistory", search);
-        }
-      } catch {
-        setLoading(false);
-      }
-    })();
-  }, [search, indicator, setLoading, setCharacters]);
 
   const updateSearchValue = (e: BaseSyntheticEvent): void => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment

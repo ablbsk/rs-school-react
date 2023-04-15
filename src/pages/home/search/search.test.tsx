@@ -1,36 +1,21 @@
-import { describe, it } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { describe, it, vi } from "vitest";
+import { render } from "@testing-library/react";
 import React from "react";
-import Search from "./search";
+import Search from "./index";
 
 const setup = () => {
-  const { container } = render(<Search setCharacters={() => []} setLoading={() => false} />);
+  const { container } = render(
+    <Search search="morty" setSearch={vi.fn()} setIndicator={vi.fn()} />
+  );
   const searchInput = container.querySelector(".search__input") as HTMLInputElement;
   const searchButton = container.querySelector(".search__button") as HTMLButtonElement;
   return { searchInput, searchButton, container };
 };
 
-describe("Search component", async () => {
-  it("should have input", async () => {
+describe("Index component", async () => {
+  it("should have important elements", async () => {
     const { container } = setup();
     expect(container.getElementsByClassName("search").length).toBe(1);
-  });
-  it("should have arrow button", async () => {
-    render(<Search setCharacters={() => []} setLoading={() => false} />);
-    expect(screen.getByRole("button")).toHaveClass("search__button");
+    expect(container.getElementsByClassName("search__button").length).toBe(1);
   });
 });
-
-// describe("Search component", async () => {
-//   it("user value will written in input", async () => {
-//     const { searchInput, searchButton } = setup();
-//     fireEvent.change(searchInput, { target: { value: "summer" } });
-//     fireEvent.keyPress(searchInput, { key: "Enter", charCode: 13 });
-//     fireEvent.keyDown(searchInput, { key: "Enter" });
-//     expect(searchInput.value).toBe("summer");
-//
-//     fireEvent.change(searchInput, { target: { value: "morty" } });
-//     fireEvent.click(searchButton);
-//     expect(searchInput.value).toBe("morty");
-//   });
-// });

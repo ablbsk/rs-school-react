@@ -23,8 +23,9 @@ export type FeedbackFormType = {
 };
 
 export type SearchType = {
-  setCharacters: (data: ICharacter[]) => void;
-  setLoading: (value: boolean) => void;
+  search: string;
+  setSearch: (value: string) => void;
+  setIndicator: (value: boolean) => void;
 };
 
 export type ShadowType = {
