@@ -1,15 +1,15 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import { ICharacter, IEpisode } from "../interfaces";
 
 export const apiBase = "https://rickandmortyapi.com/api/";
 
-export const getCharactersByQuery = async (query: string) => {
-  try {
+export const fetchCharactersByQuery = createAsyncThunk(
+  "fetchCharactersByQuery",
+  async (query: string) => {
     const response: Response = await fetch(`${apiBase}character/?name=${query}`);
-    return await response.json();
-  } catch ({ message }) {
-    throw message;
+    return response.json();
   }
-};
+);
 
 export const getCharacterById = async (id: number): Promise<ICharacter> => {
   try {

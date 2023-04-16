@@ -5,7 +5,7 @@ import HomeGrid from "./home-grid";
 import Spinner from "../../components/spinner";
 import Search from "./search";
 import { RootState } from "../../types";
-import { fetchCharactersByQuery } from "../../store/search";
+import { fetchCharactersByQuery } from "../../services";
 import { useStoreDispatch } from "../../store";
 
 const Home: FunctionComponent = () => {
