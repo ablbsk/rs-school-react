@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getCharactersByQuery } from "../services";
+import { ISearchState } from "../interfaces/state";
 
-const initialState = {
+const initialState: ISearchState = {
   query: "",
   characters: [],
   isLoading: false,
@@ -9,9 +9,11 @@ const initialState = {
 };
 
 export const fetchCharactersByQuery = createAsyncThunk(
-  "search/fetchCharactersByQuery",
+  "fetchCharactersByQuery",
   async (query: string) => {
-    const response = await getCharactersByQuery(query);
+    const response: Response = await fetch(
+      `https://rickandmortyapi.com/api/character/?name=${query}`
+    );
     return response.json();
   }
 );
@@ -20,14 +22,16 @@ const charactersSlice = createSlice({
   name: "search",
   initialState,
   reducers: {
-    setQuery: (state, action): void => {
+    setQuery: (state: ISearchState, action) => {
+      state.isLoading = true;
       state.query = action.payload;
     },
-    extraReducers: (builder) => {
-      builder.addCase(fetchCharactersByQuery.fulfilled, (state, action) => {
-        state.characters = action.payload.results;
-      });
-    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchCharactersByQuery.fulfilled, (state: ISearchState, action) => {
+      state.isLoading = false;
+      state.characters = action.payload.results;
+    });
   },
 });
 
