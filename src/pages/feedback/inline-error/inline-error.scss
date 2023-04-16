@@ -1,0 +1,14 @@
+@import "../../../styles/constants";
+
+.inline-error {
+  display: inline-block;
+  text-align: center;
+  font-size: map-get($font-size, xs);
+  visibility: hidden;
+  color: $color-font-error;
+  transition: $transition;
+
+  &--active {
+    visibility: visible;
+  }
+}

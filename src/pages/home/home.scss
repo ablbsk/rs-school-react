@@ -1,0 +1,34 @@
+@import "../../styles/constants";
+@import "../../styles/mixins";
+
+.promo {
+  @include icon-background(400px, 100%, "../../assets/images/promo.svg");
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  color: $color-font-dark-regular;
+  background-color: #ffffff;
+}
+
+.promo__header {
+  margin-top: 100px;
+  font-size: map-get($font-size, 4xl);
+  font-weight: 700;
+  transition: $transition;
+  text-align: center;
+  cursor: default;
+
+  @include media-md {
+    margin-top: 75px;
+    font-size: map-get($font-size, 3xl);
+    line-height: 55px;
+  }
+
+  @include media-sm {
+    margin-top: 50px;
+    font-size: map-get($font-size, 2xl);
+    line-height: 55px;
+  }
+}
