@@ -15,7 +15,7 @@ export default defineConfig({
       provider: "c8",
       all: true,
       include: ["src/**/*"],
-      exclude: ["src/vite-env.d.ts", "src/types/index.ts", "src/interfaces/index.ts"],
+      exclude: ["src/vite-env.d.ts", "src/types/index.tsx", "src/interfaces/index.tsx"],
       skipFull: true,
       reporter: "text",
     },

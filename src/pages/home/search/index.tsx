@@ -1,19 +1,17 @@
 import "./search.scss";
 import React, { BaseSyntheticEvent, FunctionComponent, KeyboardEvent, useRef } from "react";
-import { SearchType } from "../../../types";
+import { useDispatch } from "react-redux";
+import { setQuery } from "../../../store/search";
 
-const Search: FunctionComponent<SearchType> = ({ search, setSearch, setIndicator }) => {
+const Search: FunctionComponent = () => {
   const searchRef = useRef<HTMLInputElement>(null);
+  const dispatch = useDispatch();
 
   const updateSearchValue = (e: BaseSyntheticEvent): void => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     if (e.nativeEvent.inputType === undefined) {
-      setSearch("");
-      setIndicator(true);
-      localStorage.setItem("searchHistory", "");
-    } else {
-      setSearch(e.target.value);
+      dispatch(setQuery(""));
     }
   };
 
@@ -21,15 +19,13 @@ const Search: FunctionComponent<SearchType> = ({ search, setSearch, setIndicator
     const { value } = e.target as HTMLInputElement;
 
     if (e.key === "Enter") {
-      setSearch(value);
-      setIndicator(true);
+      dispatch(setQuery(value));
     }
   };
 
   const arrowClick = (): void => {
     const { value } = searchRef.current as HTMLInputElement;
-    setSearch(value);
-    setIndicator(true);
+    dispatch(setQuery(value));
   };
 
   return (
@@ -38,7 +34,6 @@ const Search: FunctionComponent<SearchType> = ({ search, setSearch, setIndicator
       <input
         className="search__input"
         type="search"
-        value={search}
         placeholder="What do you want to find?"
         ref={searchRef}
         onKeyDown={handleKeyDown}

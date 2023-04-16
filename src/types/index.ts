@@ -1,4 +1,7 @@
 import { ICharacter, ICharacterWithEpisodes, IFeedback } from "../interfaces";
+import { store } from "../store";
+
+export type RootState = ReturnType<typeof store.getState>;
 
 export type HomeGridType = {
   elements: ICharacter[];
@@ -20,12 +23,6 @@ export type FeedbackCardType = {
 
 export type FeedbackFormType = {
   addFeedback: (feedback: IFeedback) => void;
-};
-
-export type SearchType = {
-  search: string;
-  setSearch: (value: string) => void;
-  setIndicator: (value: boolean) => void;
 };
 
 export type ShadowType = {
