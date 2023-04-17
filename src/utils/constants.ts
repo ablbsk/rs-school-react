@@ -17,8 +17,8 @@ export const courseModules = [
   { name: "Components", isComplete: true },
   { name: "Forms", isComplete: true },
   { name: "Hooks", isComplete: true },
-  { name: "API", isComplete: false },
-  { name: "Redux", isComplete: false },
+  { name: "API", isComplete: true },
+  { name: "Redux", isComplete: true },
   { name: "SSR/SSG", isComplete: false },
 ];
 
