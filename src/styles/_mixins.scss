@@ -1,0 +1,56 @@
+@import "./constants";
+
+@mixin font($family, $size, $line-height, $style: normal, $weight: 400) {
+  font-family: $family;
+  font-size: $size;
+  line-height: $line-height;
+  font-style: $style;
+  font-weight: $weight;
+}
+
+@mixin icon-background($height, $width, $url) {
+  display: inline-block;
+  height: $height;
+  width: $width;
+  background-image: url($url);
+  background-size: 100% 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+@mixin square-size($height, $width: $height) {
+  height: $height;
+  width: $width;
+}
+
+// ========================= MEDIA ========================
+
+@mixin media-xl {
+  @media (max-width: map-get($media-breakpoints, xl)) {
+    @content;
+  }
+}
+
+@mixin media-lg {
+  @media (max-width: map-get($media-breakpoints, lg)) {
+    @content;
+  }
+}
+
+@mixin media-md {
+  @media (max-width: map-get($media-breakpoints, md)) {
+    @content;
+  }
+}
+
+@mixin media-sm {
+  @media (max-width: map-get($media-breakpoints, sm)) {
+    @content;
+  }
+}
+
+@mixin media-2sm {
+  @media (max-width: map-get($media-breakpoints, 2sm)) {
+    @content;
+  }
+}

@@ -1,0 +1,114 @@
+@import "../../../styles/constants";
+@import "../../../styles/mixins";
+
+.character-modal {
+  width: 600px;
+  background: white;
+  border-radius: $border-radius-lg;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  font-size: map-get($font-size, m);
+  color: $color-font-dark-regular;
+  transform: translate(-50%,-50%);
+  transition: $transition;
+  z-index: 75;
+
+  @include media-md {
+    width: calc(100% - 60px);
+    min-width: 360px;
+  }
+}
+
+.character-modal__header {
+  padding: 15px 45px;
+  text-align: center;
+  color: $color-font-light-regular;
+  background: $background-image-accent;
+  font-size: map-get($font-size, xl);
+  border-radius: $border-radius-lg $border-radius-lg 0 0;
+}
+
+.character-modal__close {
+  margin: 10px auto;
+  padding: 4px 8px;
+  display: inline-block;
+  position: absolute;
+  top: 7.5px;
+  right: 15px;
+  font-size: map-get($font-size, s);
+  font-weight: 700;
+  color: $color-font-light-regular;
+  border: 3px solid $color-font-light-regular;
+  border-radius: 50%;
+  transition: $transition;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-accent-text;
+    border-color: $color-accent-text;
+  }
+}
+
+.character-modal__content {
+  padding: 30px 15px;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.character-modal__ceil {
+  width: calc(50% - 15px);
+  transition: $transition;
+
+  @include media-sm {
+    width: 100%;
+  }
+}
+
+.character-modal__tags {
+  margin-top: 15px;
+  display: flex;
+  gap: 7.5px;
+}
+
+// ====================== ELEMENT ========================
+
+.character-modal__img {
+  height: 100%;
+  width: 100%;
+  border-radius: $border-radius-md;
+  object-fit: contain;
+
+  @include media-sm {
+    margin: 0 auto;
+    height: 200px;
+    width: auto;
+    display: block;
+  }
+}
+
+.character-modal__list {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+}
+
+.character-modal__item {
+  font-size: 2rem;
+}
+
+.character-modal__title {
+  padding-right: 10px;
+  color: $color-tag-default;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.character-modal__subheader {
+  font-size: map-get($font-size, l);
+  font-weight: 500;
+}

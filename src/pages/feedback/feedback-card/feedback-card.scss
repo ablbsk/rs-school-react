@@ -1,0 +1,78 @@
+@import "../../../styles/constants";
+@import "../../../styles/mixins";
+
+.feedback-card {
+  width: calc(50% - 15px);
+  font-size: map-get($font-size, m);
+  font-weight: 400;
+  background-color: $color-card-background;
+  border-radius: $border-radius-lg;
+  transition: $transition;
+
+  @include media-lg {
+    width: 100%;
+  }
+}
+
+.feedback-card__wrapper {
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+
+  @include media-sm {
+    padding: 15px;
+    gap: 5px 10px;
+  }
+}
+
+.feedback-card__picture {
+  width: 50px;
+  height: 50px;
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #cf112b;
+  transition: $transition;
+
+  @include media-2sm {
+    display: none;
+  }
+}
+
+.feedback-card__column {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex-grow: 2;
+}
+
+.feedback-card__header {
+  font-size: map-get($font-size, xl);
+
+  @include media-2sm {
+    font-size: map-get($font-size, l);
+  }
+}
+
+.feedback-card__subheader {
+  font-size: map-get($font-size, m);
+  font-weight: 500;
+}
+
+.feedback-card__info {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 5px;
+  font-size: map-get($font-size, s);
+}
+
+.feedback-card__info-item {
+  text-transform: capitalize;
+}
+
+.feedback-card__description {
+  width: 100%;
+  font-size: 2rem;
+}
