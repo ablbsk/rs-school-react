@@ -3,7 +3,7 @@ import { IMainState } from "../interfaces/state";
 import { fetchCharactersByQuery, fetchCharacterWithEpisodes } from "../services";
 
 const initialState: IMainState = {
-  query: "",
+  query: "rick",
   characters: [],
   modal: {
     character: null,
@@ -18,7 +18,7 @@ const charactersSlice = createSlice({
   initialState,
   reducers: {
     setQuery: (state: IMainState, action) => {
-      state.isLoading = true;
+      state.isLoading = state.query !== action.payload;
       state.query = action.payload;
     },
     setCharacterToModal: (state: IMainState) => {
