@@ -1,20 +1,36 @@
 import "./search.scss";
-import React, { BaseSyntheticEvent, FunctionComponent, KeyboardEvent, useRef } from "react";
-import { useDispatch } from "react-redux";
+import React, {
+  BaseSyntheticEvent,
+  FunctionComponent,
+  KeyboardEvent,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { setQuery } from "../../../store/main";
 import { SearchType } from "../../../types";
+import { fetchCharactersByQuery } from "../../../services";
+import { useStoreDispatch } from "../../../store";
 
 const Search: FunctionComponent<SearchType> = ({ search }) => {
   const searchRef = useRef<HTMLInputElement>(null);
-  const dispatch = useDispatch();
+
+  const dispatch = useStoreDispatch();
+
+  const [searchValue, setSearchValue] = useState<string>(search);
+
+  useEffect((): void => {
+    dispatch(fetchCharactersByQuery(search));
+  }, [dispatch, search]);
 
   const updateSearchValue = (e: BaseSyntheticEvent): void => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     if (e.nativeEvent.inputType === undefined) {
+      setSearchValue("");
       dispatch(setQuery(""));
     } else {
-      dispatch(setQuery(e.target.value));
+      setSearchValue(e.target.value);
     }
   };
 
@@ -22,12 +38,14 @@ const Search: FunctionComponent<SearchType> = ({ search }) => {
     const { value } = e.target as HTMLInputElement;
 
     if (e.key === "Enter") {
+      setSearchValue(value);
       dispatch(setQuery(value));
     }
   };
 
   const arrowClick = (): void => {
     const { value } = searchRef.current as HTMLInputElement;
+    setSearchValue(value);
     dispatch(setQuery(value));
   };
 
@@ -37,7 +55,7 @@ const Search: FunctionComponent<SearchType> = ({ search }) => {
       <input
         className="search__input"
         type="search"
-        value={search}
+        value={searchValue}
         placeholder="What do you want to find?"
         ref={searchRef}
         onKeyDown={handleKeyDown}

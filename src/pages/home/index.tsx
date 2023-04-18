@@ -1,21 +1,13 @@
 import "./home.scss";
-import React, { FunctionComponent, useEffect } from "react";
+import React, { FunctionComponent } from "react";
 import { useSelector } from "react-redux";
 import HomeGrid from "./home-grid";
 import Spinner from "../../components/spinner";
 import Search from "./search";
 import { RootState } from "../../types";
-import { fetchCharactersByQuery } from "../../services";
-import { useStoreDispatch } from "../../store";
 
 const Home: FunctionComponent = () => {
-  const dispatch = useStoreDispatch();
-
   const { characters, query, isLoading } = useSelector((state: RootState) => state.main);
-
-  useEffect((): void => {
-    dispatch(fetchCharactersByQuery(query));
-  }, [dispatch, query]);
 
   return (
     <>
