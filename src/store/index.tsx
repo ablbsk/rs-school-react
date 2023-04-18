@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
-import search from "./search";
+import main from "./main";
 import feedback from "./feedback";
 
 // ------------------------------------------------------
 
 export const store = configureStore({
-  reducer: { search, feedback },
+  reducer: { main, feedback },
   devTools: true,
 });
 

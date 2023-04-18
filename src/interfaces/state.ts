@@ -1,8 +1,12 @@
-import { ICharacter, IFeedback } from "./index";
+import { ICharacter, ICharacterWithEpisodes, IFeedback } from "./index";
 
-export interface ISearchState {
+export interface IMainState {
   query: string;
   characters: ICharacter[];
+  modal: {
+    character: any;
+    isLoading: boolean;
+  };
   isLoading: boolean;
   error: null | string;
 }

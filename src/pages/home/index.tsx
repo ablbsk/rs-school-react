@@ -11,7 +11,7 @@ import { useStoreDispatch } from "../../store";
 const Home: FunctionComponent = () => {
   const dispatch = useStoreDispatch();
 
-  const { characters, query, isLoading } = useSelector((state: RootState) => state.search);
+  const { characters, query, isLoading } = useSelector((state: RootState) => state.main);
 
   useEffect((): void => {
     dispatch(fetchCharactersByQuery(query));

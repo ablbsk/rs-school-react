@@ -1,13 +1,3 @@
-export interface ICharactersResponse {
-  readonly info: {
-    count: number;
-    pages: number;
-    next: string | null;
-    prev: string | null;
-  };
-  readonly results: ICharacter[];
-}
-
 export interface ICharacter {
   id: number;
   name: string;

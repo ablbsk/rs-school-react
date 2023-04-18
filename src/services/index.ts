@@ -11,20 +11,37 @@ export const fetchCharactersByQuery = createAsyncThunk(
   }
 );
 
-export const getCharacterById = async (id: number): Promise<ICharacter> => {
-  try {
-    const response: Response = await fetch(`${apiBase}character/${id}`);
-    return await response.json();
-  } catch ({ message }) {
-    throw message;
-  }
+const getIndex = (episode: string): number => {
+  return parseInt(episode.slice(episode.lastIndexOf("/") + 1), 10);
 };
 
-export const getEpisodeById = async (id: number): Promise<IEpisode> => {
-  try {
-    const response: Response = await fetch(`${apiBase}episode/${id}`);
-    return await response.json();
-  } catch ({ message }) {
-    throw message;
-  }
+const filterData = (obj: IEpisode) => {
+  return { episode: obj.episode, name: obj.name, airDate: obj.air_date };
 };
+
+export const fetchCharacterWithEpisodes = createAsyncThunk(
+  "fetchCharacterWithEpisodes",
+  async (id: number) => {
+    const characterResponse: Response = await fetch(`${apiBase}character/${id}`);
+    const character: ICharacter = await characterResponse.json();
+
+    const firstResponse: Response = await fetch(
+      `${apiBase}episode/${getIndex(character.episode[0])}`
+    );
+    const firstEpisode = await firstResponse.json();
+
+    if (character.episode.length > 1) {
+      const secondResponse: Response = await fetch(
+        `${apiBase}episode/${getIndex(character.episode[character.episode.length - 1])}`
+      );
+      const secondEpisode = await secondResponse.json();
+      const episodes = [filterData(firstEpisode), filterData(secondEpisode)];
+
+      return { character, episodes };
+    }
+
+    const episodes = [filterData(firstEpisode)];
+
+    return { character, episodes };
+  }
+);

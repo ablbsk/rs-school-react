@@ -1,7 +1,7 @@
 import "./search.scss";
 import React, { BaseSyntheticEvent, FunctionComponent, KeyboardEvent, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { setQuery } from "../../../store/search";
+import { setQuery } from "../../../store/main";
 
 const Search: FunctionComponent = () => {
   const searchRef = useRef<HTMLInputElement>(null);

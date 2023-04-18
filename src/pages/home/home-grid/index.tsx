@@ -1,59 +1,32 @@
 import "./home-grid.scss";
 import React, { FunctionComponent, useEffect, useState } from "react";
-import { HomeGridType } from "../../../types";
-import { ICharacterWithEpisodes, IEpisode } from "../../../interfaces";
+import { useSelector } from "react-redux";
+import { HomeGridType, RootState } from "../../../types";
 import CharacterCard from "../character-card";
 import CharacterModal from "../character-modal";
 import Shadow from "../../../components/shadow";
-import { getCharacterById, getEpisodeById } from "../../../services";
 import Spinner from "../../../components/spinner";
+import { useStoreDispatch } from "../../../store";
+import { fetchCharacterWithEpisodes } from "../../../services";
+import { setCharacterToModal } from "../../../store/main";
 
 const HomeGrid: FunctionComponent<HomeGridType> = ({ elements }) => {
+  const dispatch = useStoreDispatch();
+
+  const { character, isLoading } = useSelector((state: RootState) => state.main.modal);
+
   const [showModal, setShowModal] = useState<boolean>(false);
   const [id, setId] = useState<number | null>(null);
-  const [character, setCharacter] = useState<ICharacterWithEpisodes | null>();
-  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect((): void => {
     (async () => {
-      const getIndex = (episode: string): number => {
-        return parseInt(episode.slice(episode.lastIndexOf("/") + 1), 10);
-      };
-
-      const filterData = (obj: IEpisode) => {
-        return { episode: obj.episode, name: obj.name, airDate: obj.air_date };
-      };
-
-      try {
-        if (id) {
-          setLoading(true);
-          setShowModal(true);
-
-          const characterData = await getCharacterById(id);
-          const firstSeenIn = await getEpisodeById(getIndex(characterData.episode[0]));
-
-          if (characterData.episode.length > 1) {
-            const lastSeenInId = getIndex(characterData.episode[characterData.episode.length - 1]);
-            const lastSeenIn = await getEpisodeById(lastSeenInId);
-            setCharacter({
-              character: characterData,
-              episodes: [filterData(firstSeenIn), filterData(lastSeenIn)],
-            });
-          } else {
-            setCharacter({
-              character: characterData,
-              episodes: [filterData(firstSeenIn)],
-            });
-          }
-
-          setLoading(false);
-          setId(null);
-        }
-      } catch {
-        setLoading(false);
+      if (id) {
+        setShowModal(true);
+        dispatch(setCharacterToModal());
+        dispatch(fetchCharacterWithEpisodes(id));
       }
     })();
-  }, [id]);
+  }, [dispatch, id]);
 
   const cardsElement = elements.map((item) => (
     <CharacterCard
@@ -84,7 +57,7 @@ const HomeGrid: FunctionComponent<HomeGridType> = ({ elements }) => {
           {cardsElement.length ? cardsElement : <h2 className="home-grid__header">No results</h2>}
         </div>
       </section>
-      {showModal && (loading ? spinnerElement : modalElement)}
+      {showModal && (isLoading ? spinnerElement : modalElement)}
     </>
   );
 };
