@@ -19,13 +19,12 @@ const HomeGrid: FunctionComponent<HomeGridType> = ({ elements }) => {
   const [id, setId] = useState<number | null>(null);
 
   useEffect((): void => {
-    (async () => {
-      if (id) {
-        setShowModal(true);
-        dispatch(setCharacterToModal());
-        dispatch(fetchCharacterWithEpisodes(id));
-      }
-    })();
+    if (id) {
+      setShowModal(true);
+      dispatch(setCharacterToModal());
+      dispatch(fetchCharacterWithEpisodes(id));
+      setId(null);
+    }
   }, [dispatch, id]);
 
   const cardsElement = elements.map((item) => (

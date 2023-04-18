@@ -4,7 +4,7 @@ export interface IMainState {
   query: string;
   characters: ICharacter[];
   modal: {
-    character: any;
+    character: ICharacterWithEpisodes | null;
     isLoading: boolean;
   };
   isLoading: boolean;
