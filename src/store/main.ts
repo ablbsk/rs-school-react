@@ -3,7 +3,7 @@ import { IMainState } from "../interfaces/state";
 import { fetchCharactersByQuery, fetchCharacterWithEpisodes } from "../services";
 
 const initialState: IMainState = {
-  query: "rick",
+  query: "",
   characters: [],
   modal: {
     character: null,

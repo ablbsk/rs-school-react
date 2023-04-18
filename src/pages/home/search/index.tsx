@@ -2,8 +2,9 @@ import "./search.scss";
 import React, { BaseSyntheticEvent, FunctionComponent, KeyboardEvent, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { setQuery } from "../../../store/main";
+import { SearchType } from "../../../types";
 
-const Search: FunctionComponent = () => {
+const Search: FunctionComponent<SearchType> = ({ search }) => {
   const searchRef = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
 
@@ -12,6 +13,8 @@ const Search: FunctionComponent = () => {
     // @ts-ignore
     if (e.nativeEvent.inputType === undefined) {
       dispatch(setQuery(""));
+    } else {
+      dispatch(setQuery(e.target.value));
     }
   };
 
@@ -34,6 +37,7 @@ const Search: FunctionComponent = () => {
       <input
         className="search__input"
         type="search"
+        value={search}
         placeholder="What do you want to find?"
         ref={searchRef}
         onKeyDown={handleKeyDown}

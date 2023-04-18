@@ -21,7 +21,7 @@ const Home: FunctionComponent = () => {
     <>
       <div className="promo">
         <h1 className="promo__header">The Rick and Morty</h1>
-        <Search />
+        <Search search={query} />
       </div>
       {isLoading ? <Spinner isAbsolute={false} /> : <HomeGrid elements={characters} />}
     </>

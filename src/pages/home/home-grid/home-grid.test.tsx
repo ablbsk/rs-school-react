@@ -1,10 +1,10 @@
 import { describe, it } from "vitest";
+import { Provider } from "react-redux";
 import { render } from "@testing-library/react";
 import React from "react";
 import HomeGrid from "./index";
 import charactersData from "../../../../test/character-data.json";
 import { ICharacter } from "../../../interfaces";
-import { Provider } from "react-redux";
 import { store } from "../../../store";
 
 describe("Home grid component", async () => {

@@ -7,6 +7,10 @@ export type HomeGridType = {
   elements: ICharacter[];
 };
 
+export type SearchType = {
+  search: string;
+};
+
 export type CharacterCardType = {
   character: ICharacter;
   openModal: (id: number) => void;
